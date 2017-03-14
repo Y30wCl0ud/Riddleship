@@ -1,0 +1,16 @@
+{
+  "name": "datingwebapp",
+  "version": "1.0.0",
+  "description": "A dating web application based on the concept of progressive enhancement, made for project tech at HvA bachelor CMD",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kang Yun Wang",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "*",
+    "ejs": "^2.5.6",
+    "express": "*"
+  }
+}

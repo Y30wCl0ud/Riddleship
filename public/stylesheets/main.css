@@ -1,0 +1,14 @@
+* {
+  font-family: arial, 'open sans', sans-serif;
+}
+section, nav {
+  border: 1px solid #000;
+}
+
+a {
+  text-decoration: none;
+}
+
+a > * {
+  color: #000;
+}
