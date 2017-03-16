@@ -11,16 +11,23 @@ const router = express.Router();
 // });
 
 
-router.route('/')
-  .get(function(req, res) {
-    res.locals.loggedIn = false;
-    res.locals.admin = false;
+router.get('/meet', (req, res) => {
+  res.render('user/meet');
+});
 
-    res.render('login/login');
-  })
-  .post(function(req, res){
-    res.send('posted');
-  });
+router.get('/meet_random', (req, res) => {
+  res.render('user/meet_random');
+});
+
+
+router.get('/riddle', (req, res) => {
+  res.render('user/riddle');
+});
+
+router.get('/riddle_game', (req, res) => {
+  res.render('user/riddle_game');
+});
+
 
 
 module.exports = router;

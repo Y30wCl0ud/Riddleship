@@ -1,0 +1,41 @@
+<%- include('../partials/header.ejs') %>
+    <ul>
+      <a href="mychats">
+        <li>chat</li>
+      </a>
+      <a href="contacts">
+        <li><b>contacts</b></li>
+      </a>
+    </ul>
+
+    <%# loop through all contacts of the user %>
+    <ul>
+      <% results.forEach(function(results) { %>
+        <a href="chat/<%= results.id %>">
+          <li>
+            <h3> <%= results.name %> </h3>
+          </li>
+        </a>
+      <% }) %>
+
+      <a href="/contacts"><button> menu </button></a>
+
+      <% if (admin) { %>
+        <ul class="">
+          <a href="profile/<%= results.id %>"><li>send message</li></a>
+          <a href="profile/<%= results.id %>"><li>show profile</li></a>
+          <a href="profile/<%= results.id %>"><li>delete contact  atm</li></a>
+          <a href="profile/<%= results.id %>"><li>ban user</li></a>
+        </ul>
+
+      <% } else { %>
+        <ul class="">
+          <a href="profile/<%= results.id %>"><li>show profile</li></a>
+          <a href="profile/<%= results.id %>"><li>report user</li></a>
+        </ul>
+      <% } %>
+
+    </ul>
+
+
+<%- include('../partials/footer.ejs') %>

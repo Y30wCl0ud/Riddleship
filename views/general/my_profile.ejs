@@ -1,0 +1,30 @@
+<%- include('../partials/header.ejs') %>
+
+  <header>
+    <a href="">edit</a>
+    <img src="http://lorempixel.com/400/200/people/" alt="">
+    <a href=""><button>change photo</button></a>
+  </header>
+
+  <main>
+    <ul>
+      <li>Name: <%= results[0].name %> </li>
+      <li>Gender: <%= results[0].gender %> </li>
+      <li>Looking for: <%= results[0].lookingFor %> </li>
+      <li>Age: <%= results[0].age %> </li>
+    </ul>
+
+    <form action="">
+
+      <label for="">Location: <%= results[0].location %> </label>
+      <!-- <input type="text"> -->
+
+      <label for="">About you:</label>
+      <!-- <input type="text" placeholder="Tell a bit about yourself - max 300 characters" value=" <%= results[0].about %> "> -->
+      <p> <%= results[0].about %> </p>
+
+    </form>
+
+  <a href="../"><button>logout</button></a>
+
+<%- include('../partials/footer.ejs') %>

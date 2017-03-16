@@ -2,24 +2,20 @@
 
   <header>
     <h2>Meet people</h2>
-    <a href="meet_random"><button type="button" name="button">random</button></a>
+    <a href="meet_random"><button type="button" name="button">Random</button></a>
   </header>
 
   <ul>
-    <a href="profile">
-      <li>
-        <p>Samantha</p>
-        <p>21</p>
-        <p>Friesland</p>
-      </li>
-    </a>
-    <a href="profile">
-      <li>
-        <p>John</p>
-        <p>27</p>
-        <p>Gelderland</p>
-      </li>
-    </a>
+    <%# loop through all users who correspond with the user's prefference %>
+    <% results.forEach(function(results) { %>
+      <a href="profile/<%= results.id %>">
+        <li>
+          <p> <%= results.name %> </p>
+          <p> <%= results.age %> </p>
+          <p> <%= results.location %> </p>
+        </li>
+      </a>
+    <% }) %>
   </ul>
 
 

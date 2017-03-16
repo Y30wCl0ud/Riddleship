@@ -8,41 +8,35 @@
 <table>
   <thead>
     <tr>
-      <th>naam</th>
-      <th>datum</th>
+      <th>name</th>
+      <th>date</th>
       <th>email</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <td>Menno</td>
-      <td>12-02-17</td>
-      <td>chatman@msn.nl</td>
-      <td><a href="reported">collapse</a></td>
-    </tr>
-    <tr>
-      <td>Brenna</td>
-      <td>10-01-17</td>
-      <td>chatman@msn.nl</td>
-      <td><a href="reported">collapse</a></td>
-    </tr>
-    <tr>
-      <td>Roy</td>
-      <td>26-12-16</td>
-      <td>chatman@msn.nl</td>
-      <td><a href="reported">collapse</a></td>
-    <tr>
-      <th>gemeld door: Jessica</th>
-    </tr>
-    <tr>
-      <th>reden</th>
-      <td>
-        <p>Vanaf het begin was hij me al aan het uitschelden
-          zonder enige aanleiding. Ik weet niet waarom hij dat doet, maar
-           hij wilt er maar niet mee stoppen</p>
-      </td>
-    </tr>
-  </tbody>
+
+  <% results.forEach(function(results) { %>
+    <% if (results.reported) { %>
+
+      <tbody>
+        <tr>
+          <td> <a href="profile/ <%= results.id %> "> <%= results.name %> </a> </td>
+          <td> <%= results.date %></td>
+          <td> <%= results.email %> </td>
+          <td><a href="/reported">collapse</a></td>
+        </tr>
+        <tr class=""> <!-- kan ook second of type gebruiken denk ik -->
+          <th>reported by: </th>
+          <td> <%= results.reporter %> </td>
+          <th>reason:</th>
+          <td> <%= results.reason %> </td>
+        </tr>
+      </tbody>
+
+    <% } %>
+  <% }) %>
+
+
 </table>
 
-<%- include('../partials/header.ejs') %>
+
+<%- include('../partials/footer.ejs') %>

@@ -1,39 +1,40 @@
+<nav>
+
   <% if (loggedIn && admin) { %>
-    <nav>
-      <ul>
-        <a href="dashboard">
-          <li>dashboard</li>
-        </a>
-        <a href="gebruikers">
-          <li>gebruikers</li>
-        </a>
-        <a href="mychats_a">
-          <li>chat</li>
-        </a>
-        <a href="my_profile_a">
-          <li>me</li>
-        </a>
-      </ul>
-    </nav>
+    <ul>
+      <a href="/dashboard">
+        <li>dashboard</li>
+      </a>
+      <a href="/users">
+        <li>users</li>
+      </a>
+      <a href="/mychats">
+        <li>chat</li>
+      </a>
+      <a href="/my_profile">
+        <li>me</li>
+      </a>
+    </ul>
 
   <% } else if (loggedIn) { %>
-    <nav>
-      <ul>
-        <a href="meet">
-          <li>meet</li>
-        </a>
-        <a href="riddle">
-          <li>riddle</li>
-        </a>
-        <a href="mychats">
-          <li>chat</li>
-        </a>
-        <a href="my_profile">
-          <li>me</li>
-        </a>
-      </ul>
-    </nav>
+    <ul>
+      <a href="/meet">
+        <li>meet</li>
+      </a>
+      <a href="/riddle">
+        <li>riddle</li>
+      </a>
+      <a href="/mychats">
+        <li>chat</li>
+      </a>
+      <a href="/my_profile">
+        <li>me</li>
+      </a>
+    </ul>
   <% } %>
+
+</nav>
+
 
   </body>
 </html>

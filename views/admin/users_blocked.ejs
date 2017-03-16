@@ -6,10 +6,10 @@
         <li>all</li>
       </a>
       <a href="online">
-        <li><b>online</b></li>
+        <li>online</li>
       </a>
       <a href="blocked">
-        <li>blocked</li>
+        <li><b>blocked</b></li>
       </a>
     </ul>
   </header>
@@ -23,7 +23,7 @@
       </tr>
     </thead>
 
-    <!-- if lastActive < 5 ofzo change code
+    <!-- if banned true change code
       <% results.forEach(function(results) { %>
         <tr>
           <td> <%= results.name %> </td>
@@ -35,11 +35,12 @@
 
     <tbody>
       <tr>
-        <td>Menno</td>
-        <td>online</td>
+        <td>Roy</td>
+        <td>30+ dagen</td>
         <td><a href="menu">options</a></td>
       </tr>
     </tbody>
   </table>
+
 
 <%- include('../partials/footer.ejs') %>

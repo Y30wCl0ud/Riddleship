@@ -1,0 +1,31 @@
+<%- include('../partials/header.ejs') %>
+    <ul>
+      <a href="mychats">
+        <li><b>chat</b></li>
+      </a>
+      <a href="contacts">
+        <li>contacts</li>
+      </a>
+    </ul>
+
+    <%# loop through all active chats of the user %>
+    <ul>
+      <% results.forEach(function(results) { %>
+        <a href="chat/<%= results.id %>">
+          <li>
+            <p> <%= results.name %> </p>
+            <p> <%= results.age %> </p>
+            <p> <%= results.location %> </p>
+          </li>
+        </a>
+
+        <a href="/mychats/menu"><button> menu </button></a>
+        <ul class="hidden">
+          <a href="user/<%= results.id %>"><li>show profile</li></a>
+          <a href="user/<%= results.id %>"><li>report user</li></a>
+          <a href="user/<%= results.id %>"><li>delete chat  atm</li></a>
+        </ul>
+      <% }) %>
+    </ul>
+
+<%- include('../partials/footer.ejs') %>

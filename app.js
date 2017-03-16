@@ -2,13 +2,14 @@ const express = require('express');
 const path = require('path');
 const bodyparser = require('body-parser');
 
-const port = 4000;
+const port = 3000;
 
 const app = express();
 
 // 'importing' the routes
-const index = require('./routes/index');
-const login = require('./routes/login');
+const index = require('./routes/index'),
+      user = require('./routes/user'),
+      admin = require('./routes/admin');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,151 +21,57 @@ app.use(bodyparser.urlencoded({extended: false}));
 
 // set static path
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(__dirname + '/public')); same
+
+// Global variables
+app.use((req, res, next) => {
+  res.locals.loggedIn = true;
+  res.locals.admin = false;
+
+  // variables for now
+  res.locals.results = results;
+
+  next();
+});
+
+
+
+// for the simple prototype now
+var results = [{
+  id: 1,
+  name: 'John',
+  age: 23,
+  gender: 'male',
+  location: 'Charles Town',
+  lookingFor: 'female',
+  about: 'hi this is about me and stuff',
+  email: 'john@msn.nl',
+  reported: false,
+  reporter: null,
+  reason: 'Ze is all meer dan een maand inactief in de riddle',
+  date: 'null'
+}, {
+  id: 2,
+  name: 'Jen',
+  age: 27,
+  gender: 'female',
+  location: 'Que Town',
+  lookingFor: 'male',
+  about: 'hi this is about me and stuff',
+  email: 'jen@live.com',
+  reported: true,
+  reporter: 'John',
+  reason: 'Ze is all meer dan een maand inactief in de riddle',
+  date: '12-02-17'
+}]
+
+
+
 
 // use the defined routes
 app.use('/', index);
-app.use('/login', login);
-
-
-// GET & ...post... requests routes
-
-app.route('/register')
-  .get((req, res) => {
-    res.locals.loggedIn = false;
-    res.locals.admin = false;
-
-    res.render('login/register');
-  })
-  .post((req, res) => {
-    res.send('nothing to POST yet');
-  });
-
-
-app.get('/meet', (req, res) => {
-  res.locals.loggedIn = true;
-  res.locals.admin = false;
-
-  res.render('user/meet');
-});
-
-app.get('/meet_random', (req, res) => {
-  res.locals.loggedIn = true;
-  res.locals.admin = false;
-
-  res.render('user/meet_random');
-});
-
-
-app.get('/riddle', (req, res) => {
-  res.locals.loggedIn = true;
-  res.locals.admin = false;
-
-  res.render('user/riddle');
-});
-
-app.get('/riddle_game', (req, res) => {
-  res.locals.loggedIn = true;
-  res.locals.admin = false;
-
-  res.render('user/riddle_game');
-});
-
-
-app.get('/mychats', (req, res) => {
-  res.locals.loggedIn = true;
-  res.locals.admin = false;
-
-  res.render('user/mychats');
-});
-
-// try with es6 arrow function
-app.get('/mychats_menu', (req, res) => {
-  res.locals.loggedIn = true;
-  res.locals.admin = false;
-
-  res.render('user/mychats_menu')
-});
-
-app.get('/contacts', (req, res) => {
-  res.locals.loggedIn = true;
-  res.locals.admin = false;
-
-  res.render('user/contacts');
-});
-
-app.get('/chat', (req, res) => {
-  res.locals.loggedIn = true;
-  res.locals.admin = false;
-
-  res.render('user/chat');
-});
-
-app.get('/my_profile', (req, res) => {
-  res.locals.loggedIn = true;
-  res.locals.admin = false;
-
-  res.render('user/my_profile');
-});
-
-app.get('/profile', (req, res) => {
-  res.locals.loggedIn = true;
-  res.locals.admin = false;
-
-  res.render('user/profile');
-});
-
-
-
-/*=============================================>>>>>
-= admin part damnit =
-===============================================>>>>>*/
-app.get('/dashboard', (req, res) => {
-  res.locals.loggedIn = true;
-  res.locals.admin = true;
-
-  res.render('admin/dashboard');
-});
-
-app.get('/reported', (req, res) => {
-  res.locals.loggedIn = true;
-  res.locals.admin = true;
-
-  res.render('admin/reported');
-});
-
-app.get('/reported_o', (req, res) => {
-  res.locals.loggedIn = true;
-  res.locals.admin = true;
-
-  res.render('admin/reported_o');
-});
-
-
-
-app.get('/chat_a', (req, res) => {
-  res.locals.loggedIn = true;
-  res.locals.admin = true;
-
-  res.render('admin/chat_a');
-});
-
-
-app.get('/my_profile_a', (req, res) => {
-  res.locals.loggedIn = true;
-  res.locals.admin = true;
-
-  res.render('admin/my_profile_a');
-});
-
-
-app.get('/profile_a', (req, res) => {
-  res.locals.loggedIn = true;
-  res.locals.admin = true;
-
-  res.render('admin/profile');
-});
-
-
+app.use('/', user);
+app.use('/', admin);
 
 // open? listen to a port
 app.listen(port, () => {

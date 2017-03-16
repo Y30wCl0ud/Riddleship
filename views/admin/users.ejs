@@ -3,12 +3,12 @@
   <header>
     <ul>
       <a href="/users">
-        <li>all</li>
+        <li><b>all</b></li>
       </a>
-      <a href="online">
-        <li><b>online</b></li>
+      <a href="/users/online">
+        <li>online</li>
       </a>
-      <a href="blocked">
+      <a href="/users/blocked">
         <li>blocked</li>
       </a>
     </ul>
@@ -23,7 +23,9 @@
       </tr>
     </thead>
 
-    <!-- if lastActive < 5 ofzo change code
+    <tbody>
+
+    <!--
       <% results.forEach(function(results) { %>
         <tr>
           <td> <%= results.name %> </td>
@@ -33,11 +35,20 @@
       <% }) %>
     -->
 
-    <tbody>
+      <tr>
+        <td>Jaap</td>
+        <td>2 days ago</td>
+        <td><a href="/users/menu">menu</a></td>
+      </tr>
       <tr>
         <td>Menno</td>
         <td>online</td>
-        <td><a href="menu">options</a></td>
+        <td><a href="/users/menu">menu</a></td>
+      </tr>
+      <tr>
+        <td>Roy</td>
+        <td>30+ days ago</td>
+        <td><a href="/users/menu">menu</a></td>
       </tr>
     </tbody>
   </table>
