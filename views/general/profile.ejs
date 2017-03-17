@@ -2,7 +2,11 @@
 
   <header>
     <!-- if else needed to place correct link per role -->
-    <a href="/">back</a>
+    <% if (admin) { %>
+      <a href="/users">back</a>
+    <% } else { %>
+      <a href="/meet">back</a>
+    <% } %>
     <%# <img src="http://lorempixel.com/400/200/people/" alt="">%>
     <p>Sorry, the photo is only visible if you have added each other as contacts.</p>
 
@@ -38,7 +42,7 @@
         <li>send message</li>
       </a>
       <a href="block">
-        <li>block user</li>
+        <li>ban user</li>
       </a>
     </ul>
   <% } else { %>

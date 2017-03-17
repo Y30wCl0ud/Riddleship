@@ -1,6 +1,6 @@
 <%- include('../partials/header.ejs') %>
     <ul>
-      <a href="mychats">
+      <a href="/mychats">
         <li>chat</li>
       </a>
       <a href="contacts">
@@ -16,24 +16,25 @@
             <h3> <%= results.name %> </h3>
           </li>
         </a>
+
+        <a href="/contacts"><button> menu </button></a>
+
+        <% if (admin) { %>
+          <ul class="">
+            <a href="/profile/<%= results.id %>"><li>send message</li></a>
+            <a href="/profile/<%= results.id %>"><li>show profile</li></a>
+            <a href="/profile/<%= results.id %>"><li>delete contact  atm</li></a>
+            <a href="/profile/<%= results.id %>"><li>ban user</li></a>
+          </ul>
+
+        <% } else { %>
+          <ul class="">
+            <a href="/profile/<%= results.id %>"><li>show profile</li></a>
+            <a href="/profile/<%= results.id %>"><li>report user</li></a>
+          </ul>
+        <% } %>
       <% }) %>
 
-      <a href="/contacts"><button> menu </button></a>
-
-      <% if (admin) { %>
-        <ul class="">
-          <a href="profile/<%= results.id %>"><li>send message</li></a>
-          <a href="profile/<%= results.id %>"><li>show profile</li></a>
-          <a href="profile/<%= results.id %>"><li>delete contact  atm</li></a>
-          <a href="profile/<%= results.id %>"><li>ban user</li></a>
-        </ul>
-
-      <% } else { %>
-        <ul class="">
-          <a href="profile/<%= results.id %>"><li>show profile</li></a>
-          <a href="profile/<%= results.id %>"><li>report user</li></a>
-        </ul>
-      <% } %>
 
     </ul>
 

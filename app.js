@@ -1,10 +1,18 @@
-const express = require('express');
-const path = require('path');
-const bodyparser = require('body-parser');
+const express = require('express'),
+      path = require('path'),
+      bodyparser = require('body-parser'),
+      validator = require('express-validator'),
+      mysql = require('mysql'),
+      myConnection = require('express-myconnection');
+
+
 
 const port = 3000;
 
 const app = express();
+
+
+
 
 // 'importing' the routes
 const index = require('./routes/index'),
@@ -26,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Global variables
 app.use((req, res, next) => {
   res.locals.loggedIn = true;
-  res.locals.admin = false;
+  res.locals.admin = true;
 
   // variables for now
   res.locals.results = results;
@@ -46,6 +54,7 @@ var results = [{
   lookingFor: 'female',
   about: 'hi this is about me and stuff',
   email: 'john@msn.nl',
+
   reported: false,
   reporter: null,
   reason: 'Ze is all meer dan een maand inactief in de riddle',
@@ -59,6 +68,7 @@ var results = [{
   lookingFor: 'male',
   about: 'hi this is about me and stuff',
   email: 'jen@live.com',
+
   reported: true,
   reporter: 'John',
   reason: 'Ze is all meer dan een maand inactief in de riddle',
