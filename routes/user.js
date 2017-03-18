@@ -12,6 +12,15 @@ const router = express.Router();
 
 
 router.get('/meet', (req, res) => {
+// Try to use the database, pass an error if something fails
+  // req.getConnection((err, connection) {
+  //   if(err) return next(err);
+  //   // Run a query on the database, pass an error if something fails
+  //   connection.query('SELECT * FROM user', (err, results) {
+  //     if(err) return next(err);
+  //   });
+  // });
+  res.locals.loggedIn = req.session.loggedIn;
   res.render('user/meet');
 });
 

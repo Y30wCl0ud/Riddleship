@@ -1,60 +1,60 @@
-<%- include('../partials/header.ejs') %>
+<%- include('./partials/header.ejs') %>
 
 
     <form action="/" method="">
       <!-- first fieldset basic info -->
       <fieldset>
-        <legend>Schrijf je in</legend>
+        <legend>Register</legend>
 
-        <p>Ik ben een</p>
-        <label for="ben_m">man</label>
-        <input id=ben_m type="radio" name="ben_een" >
-        <label for="ben_v">vrouw</label>
-        <input id=ben_v type="radio" name="ben_een">
+        <p>I am a</p>
+        <label for="amMale">male</label>
+        <input id=amMale type="radio" name="amMale" >
+        <label for="amFemale">female</label>
+        <input id=amFemale type="radio" name="amFemale">
 
-        <p>en zoek een</p>
-        <label for="zoek_m">man</label>
-        <input id=zoek_m type="checkbox" name="zoek_een">
+        <p>and am looking for a</p>
+        <label for="lookMale">male</label>
+        <input id=lookMale type="checkbox" name="lookMale">
         <span>en/of</span>
-        <label for="zoek_v">vrouw</label>
-        <input id=zoek_v type="checkbox" name="zoek_een">
+        <label for="lookFemale">female</label>
+        <input id=lookFemale type="checkbox" name="lookFemale">
 
-        <p>tussen de: x - x </p>
-        <label for="">minimaal(18)</label>
-        <input type="number" min="18" max="100" >
-        <label for="">maximaal(100)</label>
-        <input type="number" min="18" max="100" >
+        <p>between: x - x </p>
+        <label for="">min(18)</label>
+        <input type="number" min="18" max="100" name="minAge">
+        <label for="">max(100)</label>
+        <input type="number" min="18" max="100" name="maxAge">
         <!-- <input type="range"> -->
 
-        <label for="reg_mail">email</label>
-        <input id="reg_mail" type="email" placeholder="Je email" >
-        <label for="reg_pass">wachtwoord</label>
-        <input id="reg_pass" type="password" placeholder="Je wachtwoord" >
-        <label for="reg_pass">wachtwoord herhalen</label>
-        <input id="reg_pass" type="password" placeholder="Je wachtwoord" >
+        <label for="email">email</label>
+        <input id="email" type="email" placeholder="your email" name="email">
+        <label for="password">password</label>
+        <input id="password" type="password" placeholder="your password" name="password">
+        <label for="confirmPassword">confirm password</label>
+        <input id="confirmPassword" type="password" placeholder="your password" name="confirmPassword">
 
       </fieldset>
 
       <!-- fieldset two profile info -->
       <fieldset>
-        <legend>Vul je profiel aan</legend>
+        <legend>Your profile</legend>
 
-        <label for="naam">Naam</label>
-        <input id="naam" type="text" placeholder="b.v. Jan Smit" >
-        <label for="leeftijd">Leeftijd</label>
-        <input id="leeftijd" type="number" min="18" max="100" >
-        <label for="locatie">Locatie (optionel)</label>
-        <input id="locatie" type="text" placeholder="Provincie of woonplaats">
-        <label for="about">Over jezelf</label>
-        <input id="about" type="text" placeholder="Vertel iets over jezelf">
+        <label for="naam">name</label>
+        <input id="naam" type="text" placeholder="e.g. Jan Smit" name="name" >
+        <label for="dob">date of birth (1999 - 12 - 12)</label>
+        <input id="dob" type="date" name="dob">
+        <label for="locatie">Locatie (optional)</label>
+        <input id="locatie" type="text" placeholder="province" name="location">
+        <label for="about">About yourself</label>
+        <input id="about" type="text" placeholder="Tell others a bit about yourself" name="about">
 
 
       </fieldset>
       <input type="submit">
-      <a href="login"><button type="button">back</button></a>
+      <a href="/login"><button type="button">back</button></a>
     </form>
 
 
 
 
-<%- include('../partials/footer.ejs') %>
+<%- include('./partials/footer.ejs') %>

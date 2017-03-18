@@ -5,7 +5,6 @@ router.get('/dashboard', (req, res) => {
   res.render('admin/dashboard');
 });
 
-
 router.get('/reported', (req, res) => {
   res.render('admin/reported');
 });
