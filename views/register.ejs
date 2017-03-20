@@ -1,23 +1,24 @@
 <%- include('./partials/header.ejs') %>
 
 
-    <form action="/" method="">
+    <form method="post">
       <!-- first fieldset basic info -->
       <fieldset>
         <legend>Register</legend>
 
         <p>I am a</p>
         <label for="amMale">male</label>
-        <input id=amMale type="radio" name="amMale" >
+        <input id=amMale type="radio" name="gender" value="male">
         <label for="amFemale">female</label>
-        <input id=amFemale type="radio" name="amFemale">
+        <input id=amFemale type="radio" name="gender" value="female">
 
         <p>and am looking for a</p>
         <label for="lookMale">male</label>
-        <input id=lookMale type="checkbox" name="lookMale">
-        <span>en/of</span>
+        <input id=lookMale type="checkbox" name="lfor" value="male">
         <label for="lookFemale">female</label>
-        <input id=lookFemale type="checkbox" name="lookFemale">
+        <input id=lookFemale type="checkbox" name="lfor" value="female">
+        <label for="lookBoth">both</label>
+        <input id=lookBoth type="checkbox" name="lfor" value="both">
 
         <p>between: x - x </p>
         <label for="">min(18)</label>
@@ -39,8 +40,8 @@
       <fieldset>
         <legend>Your profile</legend>
 
-        <label for="naam">name</label>
-        <input id="naam" type="text" placeholder="e.g. Jan Smit" name="name" >
+        <label for="name">name</label>
+        <input id="name" type="text" placeholder="e.g. Jan Smit" name="name" >
         <label for="dob">date of birth (1999 - 12 - 12)</label>
         <input id="dob" type="date" name="dob">
         <label for="locatie">Locatie (optional)</label>

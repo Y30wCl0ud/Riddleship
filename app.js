@@ -4,7 +4,9 @@ const express = require('express'),
       session = require('express-session');
       validator = require('express-validator'),
       mysql = require('mysql'),
-      myConnection = require('express-myconnection');
+      myConnection = require('express-myconnection'),
+      md5 = require('md5'),
+      salt = 'MisterChocolateMintVanillaIceCreamThe3rd!Is3x3#PlaceChampion';
 
 const port = 3000;
 const app = express();

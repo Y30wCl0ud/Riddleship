@@ -13,28 +13,30 @@ router.route('/login') // harder to read this way imo
   })
 
   .post((req, res) => {
+    // validate input
+    req.check('email', 'Invalid email').isEmail().notEmpty();
+    req.check('password', 'Invalid password').notEmpty();
 
-    req.check('email', 'invalid email').isEmail().notEmpty();
-    req.check('password', 'invalid password').notEmpty();
-
-    var errors = req.validationErrors(); // stores all errors
+    let errors = req.validationErrors(); // stores all errors
     if (errors) {
       req.session.errors = errors;
-      // req.session.loggedIn = 0;
-      res.redirect('/login');
+      // res.redirect('/login');
 
     } else {
-      var user = {
+      let user = {
         email: req.body.email,
         password: req.body.password
       }
 
       req.getConnection((err, connection) => {
-        if(err) return next(err);
+        if(err) {return next(err);}
 
         connection.query('SELECT * FROM user WHERE email = ? AND password = ?', [user.email, user.password], (err, results) => {
-          if(err) return next(err);
+          if(err) {return next(err);}
+
           console.log(`his name is ${results[0].name} and is loggedIn and is ${results[0].admin} admin`);
+
+
           req.session.loggedIn = 1;
           req.session.admin = results[0].admin; // chekc whether user is admin
           console.log(req.session.admin == true);
@@ -48,12 +50,43 @@ router.route('/login') // harder to read this way imo
     }
   });
 
-router.route('/register')
-  .get((req, res) => {
-    res.render('register');
-  })
-  .post((req, res) => {
-    res.send('nothing to POST yet');
+router.get('/register', (req, res) => {
+  res.render('register');
+});
+
+router.post('/register', (req, res) => {
+  req.check('email', 'Invalid email').isEmail().notEmpty();
+  req.check('password', 'Enter a (longer) password').notEmpty().isLength({min: 1}).equals(req.body.confirmPassword);
+
+  let errors = req.validationErrors(); // stores all errors
+  if (errors) {
+    req.session.errors = errors;
+  } else {
+    let newUser = {
+      email: req.body.email,
+      name: req.body.name,
+      password: md5(req.body.password + salt),
+      gender: req.body.gender,
+      dob: req.body.dob,
+      location: req.body.location,
+      lookingFor: req.body.lfor,
+      minAge: req.body.minAge,
+      maxAge: req.body.maxAge,
+      about: req.body.about
+    }
+
+    req.getConnection((err, connection) => {
+      if(err) {return next(err);}
+
+      connection.query('INSERT INTO user set ?', [newUser], (err, results) => {
+        if(err) {return next(err);}
+        console.log(results);
+        console.log(err);
+
+        res.redirect('/');
+      });
+    });
+  }
 });
 
 /*=============================================>>>>>
