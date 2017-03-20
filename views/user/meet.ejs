@@ -7,12 +7,12 @@
 
   <ul>
     <%# loop through all users who correspond with the user's prefference %>
-    <% results.forEach(function(results) { %>
-      <a href="profile/<%= results.id %>">
+    <% user.forEach(function(user) { %>
+      <a href="profile/<%= user.id %>">
         <li>
-          <p> <%= results.name %> </p>
-          <p> <%= results.age %> </p>
-          <p> <%= results.location %> </p>
+          <p> <%= user.name %> </p>
+          <p> <%= user.age %> </p>
+          <p> <%= user.location %> </p>
         </li>
       </a>
     <% }) %>

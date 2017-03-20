@@ -9,7 +9,7 @@ router.get('/' , function(req, res) {
 
 router.route('/login') // harder to read this way imo
   .get((req, res, next) => {
-    res.render('login')
+    res.render('login');
   })
 
   .post((req, res) => {
@@ -20,19 +20,18 @@ router.route('/login') // harder to read this way imo
     let errors = req.validationErrors(); // stores all errors
     if (errors) {
       req.session.errors = errors;
-      // res.redirect('/login');
 
     } else {
       let user = {
         email: req.body.email,
-        password: req.body.password
+        password: md5(req.body.password + salt)
       }
 
       req.getConnection((err, connection) => {
-        if(err) {return next(err);}
+        if(err) return next(err);
 
         connection.query('SELECT * FROM user WHERE email = ? AND password = ?', [user.email, user.password], (err, results) => {
-          if(err) {return next(err);}
+          if(err) return next(err);
 
           console.log(`his name is ${results[0].name} and is loggedIn and is ${results[0].admin} admin`);
 
@@ -76,12 +75,10 @@ router.post('/register', (req, res) => {
     }
 
     req.getConnection((err, connection) => {
-      if(err) {return next(err);}
+      if(err) return next(err);
 
       connection.query('INSERT INTO user set ?', [newUser], (err, results) => {
-        if(err) {return next(err);}
-        console.log(results);
-        console.log(err);
+        if(err) return next(err);
 
         res.redirect('/');
       });

@@ -1,16 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-// no need to set the path because it is set in app.js as app.use
-//
-// router.get('/', function(req, res) {
-//   res.locals.loggedIn = false;
-//   res.locals.admin = false;
-//
-//   res.render('login/login');
-// });
-
-
 router.get('/meet', (req, res) => {
 // Try to use the database, pass an error if something fails
   // req.getConnection((err, connection) {
@@ -20,8 +10,19 @@ router.get('/meet', (req, res) => {
   //     if(err) return next(err);
   //   });
   // });
-  res.locals.loggedIn = req.session.loggedIn;
-  res.render('user/meet');
+
+  req.getConnection((err, connection) => {
+    if(err) return next(err);
+
+    connection.query('SELECT name,TIMESTAMPDIFF(YEAR, dob, CURDATE()) AS age, location FROM user WHERE admin = 0', (err, results) => {
+      if(err) return next(err);
+
+      res.locals.user = results;
+      res.render('user/meet');
+
+    });
+  });
+
 });
 
 router.get('/meet_random', (req, res) => {
