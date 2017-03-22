@@ -2,29 +2,27 @@
 
   <header>
     <a href="">edit</a>
-    <img src="http://lorempixel.com/400/200/people/" alt="">
     <a href=""><button>change photo</button></a>
   </header>
 
-  <main>
-    <ul>
-      <li>Name: <%= results[0].name %> </li>
-      <li>Gender: <%= results[0].gender %> </li>
-      <li>Looking for: <%= results[0].lookingFor %> </li>
-      <li>Age: <%= results[0].age %> </li>
-    </ul>
+  <section class="profilePic">
+    <img src="https://unsplash.it/1200/1200" alt="">
+  </section>
 
-    <form action="">
+  <section class="userInfo">
+    <h2>Name: <%= results[0].name %> </h2>
+    <br />
+    <p>Gender: <%= results[0].gender %> </p>
+    <p>Looking for: <%= results[0].lookingFor %> </p>
+    <p>Age: <%= results[0].age %> </p>
+    <p>Location: <%= results[0].location %> </p>
 
-      <label for="">Location: <%= results[0].location %> </label>
-      <!-- <input type="text"> -->
+    <h3>About you:</h3>
+    <!-- <input type="text" placeholder="Tell a bit about yourself - max 300 characters" value=" <%= results[0].about %> "> -->
+    <p> <%= results[0].about %> </p>
+  </section>
 
-      <label for="">About you:</label>
-      <!-- <input type="text" placeholder="Tell a bit about yourself - max 300 characters" value=" <%= results[0].about %> "> -->
-      <p> <%= results[0].about %> </p>
-
-    </form>
-
-  <a href="/my_profile/logout"><button>logout</button></a>
-
+  <div class="menu">
+    <a href="/my_profile/logout"><button>logout</button></a>
+  </div>
 <%- include('../partials/footer.ejs') %>

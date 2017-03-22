@@ -20,7 +20,6 @@ router.get('/meet', (req, res) => {
   //     if(err) return next(err);
   //   });
   // });
-  res.locals.loggedIn = req.session.loggedIn;
   res.render('user/meet');
 });
 

@@ -1,22 +1,144 @@
-* {
-  font-family: arial, 'open sans', sans-serif;
-}
-section, nav {
-  border: 1px solid #000;
-}
+/*----------- variables & mixins -----------*/
+/*----------- fonts -----------*/
+/*=============================================>>>>>
+= General =
+===============================================>>>>>*/
+button, input[type="submit"] {
+  padding: 0.4rem;
+  border-radius: 2px;
+  border: 2px solid #FF9800;
+  background-color: #fff;
+  color: #FF9800;
+  font-size: 100%; }
 
-a {
-  text-decoration: none;
-}
+header, section, form {
+  padding: .5rem 1rem; }
 
-a > * {
-  color: #000;
-}
+header,
+nav ul,
+nav li,
+.meetUsers,
+.profilePic,
+.menu,
+.subNav,
+.contacts ul,
+.contacts li {
+  display: flex; }
 
-.hidden {
-  display: none;
-}
+/*=============================================>>>>>
+= Header =
+===============================================>>>>>*/
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 7vh;
+  max-height: 8rem;
+  background-color: #FF9800; }
+  header h2 {
+    color: #fff; }
+  header button {
+    width: 8rem;
+    color: #FF9800; }
+  header a {
+    color: #fff; }
 
-li {
-  /*list-style-type: none;*/
-}
+/*=============================================>>>>>
+= Footer / Nav =
+===============================================>>>>>*/
+nav {
+  width: 100%; }
+  nav:last-of-type {
+    position: fixed;
+    bottom: 0; }
+  nav ul {
+    justify-content: space-around; }
+  nav li {
+    flex: 1 0 calc(100%/4);
+    justify-content: center;
+    align-items: center;
+    height: 7vh;
+    max-height: 8rem;
+    background: #FF9800;
+    border-bottom: 4px solid #FF9800;
+    transition: all .3s; }
+    nav li a {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      color: #fff; }
+    nav li:hover {
+      background: #fff; }
+      nav li:hover a {
+        color: #FF9800; }
+
+/*=============================================>>>>>
+= Components =
+===============================================>>>>>*/
+.meetUsers {
+  flex-flow: row wrap; }
+  .meetUsers li {
+    height: 6rem;
+    width: 50%; }
+  .meetUsers a {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    height: 100%;
+    padding: .2rem 1rem;
+    border: .2px solid black; }
+  .meetUsers p {
+    display: inline-block; }
+    .meetUsers p:last-child {
+      margin-top: 0.2rem;
+      width: 100%; }
+
+.profilePic {
+  height: 40vh;
+  max-height: 25rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: initial;
+  overflow: hidden;
+  border-bottom: 1px solid #000; }
+  .profilePic p {
+    width: 50%;
+    color: #757575; }
+
+.userInfo h2 {
+  display: inline-block; }
+.userInfo p:nth-of-type(2n+1) {
+  display: inline-block; }
+.userInfo p:nth-last-of-type(2) {
+  margin-bottom: 1rem; }
+.userInfo h3 {
+  border-top: 1px solid #000; }
+
+.contacts ul {
+  flex-direction: column; }
+  .contacts ul li {
+    margin-bottom: 1rem;
+    justify-content: space-between;
+    border-bottom: 1px solid #000; }
+    .contacts ul li > a {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between; }
+  .contacts ul p {
+    display: inline-block; }
+    .contacts ul p:last-of-type {
+      width: 100%; }
+
+.menu {
+  justify-content: center;
+  align-self: flex-end; }
+  .menu a, .menu button {
+    width: 100%;
+    max-width: 30rem; }
+  .menu a {
+    padding: 0 1rem; }
+
+/*# sourceMappingURL=main.css.map */

@@ -11,31 +11,46 @@
     <%# loop through all active chats of the user %>
     <ul>
       <% results.forEach(function(results) { %>
-        <a href="chat/<%= results.id %>">
-          <li>
+        <li>
+          <a href="chat/<%= results.id %>">
             <p> <%= results.name %> </p>
             <p> <%= results.age %> </p>
             <p> <%= results.location %> </p>
-          </li>
-        </a>
+          </a>
+        </li>
 
-        <a href="/mychats"><button> menu </button></a>
+        <a href="/mychats/menu"><button> menu </button></a>
 
         <% if (admin) { %>
           <ul class="">
-            <a href="/profile/<%= results.id %>"><li>add to contacts</li></a>
-            <a href="/profile/<%= results.id %>"><li>show profile</li></a>
-            <a href="/profile/<%= results.id %>"><li>delete chat  atm</li></a>
-            <a href="/users/ban"><li>ban user</li></a>
+            <li>
+              <a href="/profile/<%= results.id %>">add to contacts</a>
+            </li>
+            <li>
+              <a href="/profile/<%= results.id %>">show profile</a>
+            </li>
+            <li>
+              <a href="/profile/<%= results.id %>"><li>delete chat  atm</a>
+            </li>
+            <li>
+              <a href="/profile/<%= results.id %>"><li>ban user</a>
+            </li>
           </ul>
 
         <% } else { %>
           <ul class="">
-            <a href="/profile/<%= results.id %>"><li>show profile</li></a>
-            <a href="/profile/<%= results.id %>"><li>report user</li></a>
-            <a href="/profile/<%= results.id %>"><li>delete chat  atm</li></a>
+            <li>
+              <a href="/profile/<%= results.id %>">show profile</a>
+            </li>
+            <li>
+              <a href="/profile/<%= results.id %>">report user</a>
+            </li>
+            <li>
+              <a href="/profile/<%= results.id %>">delete chat  atm</a>
+            </li>
           </ul>
         <% } %>
+      <% }) %>
 
 
       <% }) %>

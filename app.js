@@ -65,8 +65,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Global variables
 app.use((req, res, next) => {
-  res.locals.loggedIn = req.session.loggedIn;
-  res.locals.admin = req.session.admin;
+  // res.locals.loggedIn = req.session.loggedIn;
+  // res.locals.admin = req.session.admin;
+
+  res.locals.loggedIn = true;
+  res.locals.admin = false;
 
   // variables for now
   res.locals.results = results;
@@ -93,6 +96,20 @@ var results = [{
   date: 'null'
   }, {
   id: 2,
+  name: 'Jen',
+  age: 27,
+  gender: 'female',
+  location: 'Que Town',
+  lookingFor: 'male',
+  about: 'hi this is about me and stuff',
+  email: 'jen@live.com',
+
+  reported: true,
+  reporter: 'John',
+  reason: 'Ze is all meer dan een maand inactief in de riddle',
+  date: '12-02-17'
+}, {
+  id: 3,
   name: 'Jen',
   age: 27,
   gender: 'female',
