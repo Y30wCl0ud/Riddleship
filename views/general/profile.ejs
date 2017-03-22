@@ -7,47 +7,52 @@
     <% } else { %>
       <a href="/meet">back</a>
     <% } %>
-    <%# <img src="http://lorempixel.com/400/200/people/" alt="">%>
-    <p>Sorry, the photo is only visible if you have added each other as contacts.</p>
 
     <% if (admin) { %>
       <a href="menu"> menu </a>
     <% } %>
-
   </header>
 
-  <section>
-    <h3> <%= results[id-1].name %> </h3>
-    <p> <%= results[id-1].age %> </p>
+  <section class="profilePic">
+    <% if (admin) { %>
+      <img src="https://unsplash.it/1200/1200" alt="">
+    <% } else { %>
+      <p>Sorry, the photo is only visible if you have added each other as contacts.</p>
+    <% } %>
+  </section>
+
+  <section class="userInfo">
+    <h2> <%= results[id-1].name %> </h2>
+    <p>, <%= results[id-1].age %> </p>
 
     <% if (results[id-1].location) { %>
       <p> <%= results[id-1].location %> </p>
     <% } %>
 
     <p>Looking for a: <%= results[id-1].lookingFor %></p>
+
+    <h3>About me</h5>
+    <p>
+      <%= results[id-1].about %>
+    </p>
   </section>
 
-  <h5>About me</h5>
-  <p>
-    <%= results[id-1].about %>
-  </p>
+
+  <div class="menu">
+    <% if (admin) { %>
+      <p>
+        menu
+      </p>
+      <ul>
+        <li><a href="/chat/<%= results[id-1].id %>">send message</a></li>
+        <li><a href="block">ban user</a></li>
+      </ul>
+    <% } else { %>
+      <a href="riddle"><button>send riddle request</button></a>
+    <% } %>
+  </div>
 
 
-  <% if (admin) { %>
-    <p>
-      menu
-    </p>
-    <ul>
-      <a href="/chat/<%= results[id-1].id %>">
-        <li>send message</li>
-      </a>
-      <a href="block">
-        <li>ban user</li>
-      </a>
-    </ul>
-  <% } else { %>
-    <a href="riddle"><button>send riddle request</button></a>
-  <% } %>
 
 
 <%- include('../partials/footer.ejs') %>

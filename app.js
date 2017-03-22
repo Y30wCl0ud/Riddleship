@@ -65,11 +65,62 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Global variables
 app.use((req, res, next) => {
-  res.locals.loggedIn = req.session.loggedIn;
-  res.locals.admin = req.session.admin;
+  // res.locals.loggedIn = req.session.loggedIn;
+  // res.locals.admin = req.session.admin;
+
+  res.locals.loggedIn = true;
+  res.locals.admin = false;
 
   next();
 });
+
+
+
+
+// for the simple prototype now
+var results = [{
+  id: 1,
+  name: 'John',
+  age: 23,
+  gender: 'male',
+  location: 'Charles Town',
+  lookingFor: 'female',
+  about: 'hi this is about me and stuff',
+  email: 'john@msn.nl',
+
+  reported: false,
+  reporter: null,
+  reason: 'Ze is all meer dan een maand inactief in de riddle',
+  date: 'null'
+  }, {
+  id: 2,
+  name: 'Jen',
+  age: 27,
+  gender: 'female',
+  location: 'Que Town',
+  lookingFor: 'male',
+  about: 'hi this is about me and stuff',
+  email: 'jen@live.com',
+
+  reported: true,
+  reporter: 'John',
+  reason: 'Ze is all meer dan een maand inactief in de riddle',
+  date: '12-02-17'
+}, {
+  id: 3,
+  name: 'Jen',
+  age: 27,
+  gender: 'female',
+  location: 'Que Town',
+  lookingFor: 'male',
+  about: 'hi this is about me and stuff',
+  email: 'jen@live.com',
+
+  reported: true,
+  reporter: 'John',
+  reason: 'Ze is all meer dan een maand inactief in de riddle',
+  date: '12-02-17'
+}]
 
 
 

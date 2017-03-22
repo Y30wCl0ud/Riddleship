@@ -1,0 +1,245 @@
+
+// search: temp
+//
+// search: check
+
+/*----------- variables & mixins -----------*/
+
+$primary_c: #FF9800;
+$headfont_c: #fff;
+$mainfont_c: #212121;
+$secfont_c: #757575;
+
+
+
+// @mixin vertical_margin($v_margin) {
+// 	margin : {
+// 		top: $v_margin;
+// 		bottom: $v_margin;
+// 	}
+// }
+
+/*----------- fonts -----------*/
+
+
+// @font-face {
+	// font-family: nexa;
+	// src: url("../fonts/nexa_light.otf");
+// }
+
+
+/*=============================================>>>>>
+= General =
+===============================================>>>>>*/
+html {
+  // margin: 1rem;
+}
+
+button, input[type="submit"] {
+  padding: 0.4rem;
+  border-radius: 2px;
+  border: 2px solid $primary_c;
+
+  background-color: #fff;
+  color: $primary_c;
+  font-size: 100%;
+}
+
+// default padding
+header, section, form {
+  padding: .5rem 1rem;
+}
+
+// add display flex
+header,
+nav ul,
+nav li,
+.meetUsers,
+.profilePic,
+.menu,
+.subNav,
+.contacts ul,
+.contacts li {
+  display: flex;
+
+}
+
+/*=============================================>>>>>
+= Header =
+===============================================>>>>>*/
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 7vh;
+  max-height: 8rem;
+
+  background-color: $primary_c;
+
+  h2 {
+    color: $headfont_c;
+  }
+
+  button {
+    width: 8rem;
+    color: $primary_c;
+    //check add transition
+  }
+  a {
+    color: #fff;
+  }
+}
+
+
+/*=============================================>>>>>
+= Footer / Nav =
+===============================================>>>>>*/
+
+nav {
+  &:last-of-type {
+    position: fixed;
+    bottom: 0;
+  }
+
+  width: 100%;
+  ul {
+    justify-content: space-around;
+  }
+  li {
+    flex: 1 0 calc(100%/4);
+    justify-content: center;
+    align-items: center;
+    height: 7vh;
+    max-height: 8rem;
+
+    background: $primary_c;
+    border-bottom: 4px solid $primary_c;
+
+    a {
+      display: flex;
+      height: 100%;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+
+      color: #fff;
+    }
+    &:hover {
+      background: #fff;
+      a { color: $primary_c  }
+    }
+    transition: all .3s;
+  }
+}
+
+/*=============================================>>>>>
+= Components =
+===============================================>>>>>*/
+
+.meetUsers {
+
+  flex-flow: row wrap;
+  li {
+    height: 6rem;
+    width: 50%;
+  }
+  a {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+
+    height: 100%;
+    padding: .2rem 1rem;
+
+    // line-height: 1.8;
+
+    // delete temp
+    border: .2px solid black;
+  }
+  p {
+    display: inline-block;
+    &:last-child {
+      margin-top: 0.2rem;
+      width: 100%;
+    }
+  }
+}
+
+// profile(user)
+// random too?
+.profilePic {
+  height: 40vh;
+  max-height: 25rem;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 1rem;
+  padding: initial;
+
+  overflow: hidden;
+
+  // temp
+  border-bottom: 1px solid #000;
+  p {
+    width: 50%;
+    color: $secfont_c;
+  }
+}
+
+.userInfo {
+  h2 {display: inline-block;}
+
+  & p:nth-of-type(2n+1) {
+    display: inline-block;
+  }
+  & p:nth-last-of-type(2) {
+    // width: 100%;
+    margin-bottom: 1rem;
+  }
+  h3 {  border-top: 1px solid #000;  }
+}
+
+// check how button  a can be in a
+.contacts ul {
+  flex-direction: column;
+  li {
+    margin-bottom: 1rem;
+    justify-content: space-between;
+
+    // check
+    border-bottom: 1px solid #000;
+    & > a {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      & > * {
+        // flex: 1 0 100%;
+      }
+    }
+  }
+  p {
+    display: inline-block;
+    &:last-of-type {
+      // text-align: right;
+      width: 100%;
+    }
+  }
+}
+
+
+.menu {
+  justify-content: center;
+  // margin-top: auto;
+  align-self: flex-end;
+
+  a, button {
+    width: 100%;
+    max-width: 30rem;
+  }
+
+  a {
+    padding: 0 1rem;
+  }
+}

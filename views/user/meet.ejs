@@ -5,18 +5,20 @@
     <a href="meet_random"><button type="button" name="button">Random</button></a>
   </header>
 
-  <ul>
+  <ul class="meetUsers">
     <%# loop through all users who correspond with the user's prefference %>
-    <% user.forEach(function(user) { %>
-      <a href="profile/<%= user.id %>">
-        <li>
-          <p> <%= user.name %> </p>
-          <p> <%= user.age %> </p>
-          <p> <%= user.location %> </p>
-        </li>
-      </a>
+
+    <% results.forEach(function(results) { %>
+      <li>
+        <a href="profile/<%= results.id %>">
+          <p> <%= results.name %> </p>
+          <p>, <%= results.age %> </p>
+          <p> <%= results.location %> </p>
+        </a>
+      </li>
+
     <% }) %>
   </ul>
 
 
-  <%- include('../partials/footer.ejs') %>
+<%- include('../partials/footer.ejs') %>

@@ -1,26 +1,31 @@
 <%- include('../partials/header.ejs') %>
-    <ul>
-      <a href="mychats">
-        <li>chat</li>
-      </a>
-      <a href="contacts">
-        <li><b>contacts</b></li>
-      </a>
-    </ul>
+<nav>
+  <ul>
+    <li>
+      <a href="mychats">chat</a>
+    </li>
+    <li>
+      <a href="contacts"><b>contacts</b></a>
+    </li>
+  </ul>
+</nav>
+<%# loop through all contacts of the user %>
 
-    <%# loop through all contacts of the user %>
+  <section class="contacts">
     <ul>
       <% results.forEach(function(results) { %>
-        <a href="chat/<%= results.id %>">
-          <li>
-            <h3> <%= results.name %> </h3>
-          </li>
-        </a>
+        <li>
+          <a href="chat/<%= results.id %>">
+            <p> <b><%= results.name %></b> </p>
+          </a>
+          <a href="/contacts/menu"><button> menu </button></a>
+          
+        </li>
       <% }) %>
 
-      <a href="/contacts/menu"><button> menu </button></a>
 
     </ul>
+  </section>
 
 
 <%- include('../partials/footer.ejs') %>

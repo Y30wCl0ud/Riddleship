@@ -11,18 +11,19 @@ router.get('/meet', (req, res) => {
   //   });
   // });
 
-  req.getConnection((err, connection) => {
-    if(err) return next(err);
+  // req.getConnection((err, connection) => {
+  //   if(err) return next(err);
+  //
+  //   connection.query('SELECT name,TIMESTAMPDIFF(YEAR, dob, CURDATE()) AS age, location FROM user WHERE admin = 0', (err, results) => {
+  //     if(err) return next(err);
+  //
+  //     res.locals.user = results;
+  //     res.render('user/meet');
+  //
+  //   });
+  // });
 
-    connection.query('SELECT name,TIMESTAMPDIFF(YEAR, dob, CURDATE()) AS age, location FROM user WHERE admin = 0', (err, results) => {
-      if(err) return next(err);
-
-      res.locals.user = results;
-      res.render('user/meet');
-
-    });
-  });
-
+  res.render('user/meet');
 });
 
 router.get('/meet_random', (req, res) => {

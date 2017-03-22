@@ -38,3 +38,7 @@ Thumbs.db
 
 # Ignore all modules/items in git node_modules folder
 node_modules/
+
+# Ignore sass' cache & map file
+.sass-cache/
+*.map

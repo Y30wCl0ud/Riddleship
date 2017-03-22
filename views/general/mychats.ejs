@@ -1,41 +1,34 @@
 <%- include('../partials/header.ejs') %>
+  <nav>
     <ul>
-      <a href="/mychats">
-        <li><b>chat</b></li>
-      </a>
-      <a href="/contacts">
-        <li>contacts</li>
-      </a>
+      <li>
+        <a href="mychats"><b>chat</b></a>
+      </li>
+      <li>
+        <a href="contacts">contacts</a>
+      </li>
     </ul>
+  </nav>
 
     <%# loop through all active chats of the user %>
-    <ul>
-      <% results.forEach(function(results) { %>
-        <a href="chat/<%= results.id %>">
+    <section class="contacts">
+      <ul>
+        <% results.forEach(function(results) { %>
           <li>
-            <p> <%= results.name %> </p>
-            <p> <%= results.age %> </p>
-            <p> <%= results.location %> </p>
+            <a href="chat/<%= results.id %>">
+              <p> <b><%= results.name %></b> </p>
+              <p> last message time </p>
+              <p> last message preview </p>
+              <a href="/mychats/menu">
+                <button> menu </button>
+              </a>
+            </a>
           </li>
-        </a>
 
-        <a href="/mychats/menu"><button> menu </button></a>
-        <% if (admin) { %>
-          <ul class="hidden">
-            <a href="/profile/<%= results.id %>"><li>add to contacts</li></a>
-            <a href="/profile/<%= results.id %>"><li>show profile</li></a>
-            <a href="/profile/<%= results.id %>"><li>delete chat  atm</li></a>
-            <a href="/profile/<%= results.id %>"><li>ban user</li></a>
-          </ul>
 
-        <% } else { %>
-          <ul class="hidden">
-            <a href="/profile/<%= results.id %>"><li>show profile</li></a>
-            <a href="/profile/<%= results.id %>"><li>report user</li></a>
-            <a href="/profile/<%= results.id %>"><li>delete chat  atm</li></a>
-          </ul>
-        <% } %>
-      <% }) %>
-    </ul>
+        <% }) %>
+      </ul>
+    </section>
+
 
 <%- include('../partials/footer.ejs') %>
