@@ -1,12 +1,12 @@
 const express = require('express'),
       path = require('path'),
       bodyparser = require('body-parser'),
-      session = require('express-session');
+      fs = require('fs'),
+      multer = require('multer'),
+      session = require('express-session'),
       validator = require('express-validator'),
       mysql = require('mysql'),
-      myConnection = require('express-myconnection'),
-      md5 = require('md5'),
-      salt = 'MisterChocolateMintVanillaIceCreamThe3rd!Is3x3#PlaceChampion';
+      myConnection = require('express-myconnection');
 
 const port = 3000;
 const app = express();
@@ -20,8 +20,10 @@ const index = require('./routes/index'),
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// defining upload destination
+var upload = multer({dest: 'public/uploads/'});
 
-//
+// mysql connection
 app.use(myConnection(mysql, {
   host: 'localhost',
   user: 'student',
@@ -34,6 +36,9 @@ app.use(myConnection(mysql, {
 // body parser middleware
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: false}));
+
+app.use(upload.single('profilePic'));
+
 // app.use(validator());
 // this line must be immediately after any of the bodyParser middlewares!
 // app.use(validator());
@@ -70,6 +75,8 @@ app.use((req, res, next) => {
 
   res.locals.loggedIn = true;
   res.locals.admin = false;
+
+  res.locals.results = results; // for local dev use
 
   next();
 });

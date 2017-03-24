@@ -1,7 +1,7 @@
 <%- include('./partials/header.ejs') %>
 
 
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
       <!-- first fieldset basic info -->
       <fieldset>
         <legend>Register</legend>
@@ -48,11 +48,13 @@
         <input id="locatie" type="text" placeholder="province" name="location">
         <label for="about">About yourself</label>
         <input id="about" type="text" placeholder="Tell others a bit about yourself" name="about">
+        <label for="profilePic">Picture</label>
+        <input id="profilePic" type="file" name="profilePic">
 
 
       </fieldset>
       <input type="submit">
-      <a href="/login"><button type="button">back</button></a>
+      <a href="/"><button type="button">back</button></a>
     </form>
 
 

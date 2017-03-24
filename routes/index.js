@@ -1,5 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const md5 = require('md5');
+const salt = 'MisterChocolateMintVanillaIceCreamThe3rd!Is3x3#PlaceChampion';
+
+var myID;
 
 // GET the homepage/index
 router.get('/' , function(req, res) {
@@ -37,7 +41,9 @@ router.route('/login') // harder to read this way imo
 
 
           req.session.loggedIn = 1;
-          req.session.admin = results[0].admin; // chekc whether user is admin
+          req.session.admin = results[0].admin; // check whether user is admin
+          req.session.ID = results[0].ID;
+          myID = req.session.ID; // set the global var to access own ID
           console.log(req.session.admin == true);
           if(req.session.admin) {
             res.redirect('/dashboard');
@@ -55,7 +61,7 @@ router.get('/register', (req, res) => {
 
 router.post('/register', (req, res) => {
   req.check('email', 'Invalid email').isEmail().notEmpty();
-  req.check('password', 'Enter a (longer) password').notEmpty().isLength({min: 1}).equals(req.body.confirmPassword);
+  req.check('password', 'Enter a (longer) password').notEmpty().isLength({min: 6}).equals(req.body.confirmPassword);
 
   let errors = req.validationErrors(); // stores all errors
   if (errors) {
@@ -71,7 +77,10 @@ router.post('/register', (req, res) => {
       lookingFor: req.body.lfor,
       minAge: req.body.minAge,
       maxAge: req.body.maxAge,
-      about: req.body.about
+      about: req.body.about,
+    }
+    if(req.file !== undefined) {
+      newUser.picture = req.file.originalname;
     }
 
     req.getConnection((err, connection) => {
@@ -111,6 +120,9 @@ router.get('/contacts/menu', (req, res) => {
 });
 
 router.get('/my_profile', (req, res) => {
+  // picture = user.picture where id = myID
+  console.log(myID);
+  res.locals.picture = 'klassenfoto.jpg';
   res.render('general/my_profile');
 });
 
