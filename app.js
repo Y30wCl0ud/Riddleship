@@ -15,6 +15,8 @@ const app = express();
 const index = require('./routes/index'),
       user = require('./routes/user'),
       admin = require('./routes/admin');
+var myID;
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -69,14 +71,16 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Global variables
+
 app.use((req, res, next) => {
-  // res.locals.loggedIn = req.session.loggedIn;
-  // res.locals.admin = req.session.admin;
+  res.locals.loggedIn = req.session.loggedIn;
+  res.locals.admin = req.session.admin;
 
-  res.locals.loggedIn = true;
-  res.locals.admin = false;
 
-  res.locals.results = results; // for local dev use
+ // for local dev use
+  // res.locals.loggedIn = true;
+  // res.locals.admin = false;
+  res.locals.results = results;
 
   next();
 });

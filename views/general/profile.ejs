@@ -22,18 +22,18 @@
   </section>
 
   <section class="userInfo">
-    <h2> <%= results[id-1].name %> </h2>
-    <p>, <%= results[id-1].age %> </p>
+    <h2> <%= results.name %> </h2>
+    <p>, <%= results.age %> </p>
 
-    <% if (results[id-1].location) { %>
-      <p> <%= results[id-1].location %> </p>
+    <% if (results.location) { %>
+      <p> <%= results.location %> </p>
     <% } %>
 
-    <p>Looking for a: <%= results[id-1].lookingFor %></p>
+    <p>Looking for a: <%= results.lookingFor %></p>
 
     <h3>About me</h5>
     <p>
-      <%= results[id-1].about %>
+      <%= results.about %>
     </p>
   </section>
 
@@ -44,7 +44,7 @@
         menu
       </p>
       <ul>
-        <li><a href="/chat/<%= results[id-1].id %>">send message</a></li>
+        <li><a href="/chat/<%= results.userID %>">send message</a></li>
         <li><a href="block">ban user</a></li>
       </ul>
     <% } else { %>

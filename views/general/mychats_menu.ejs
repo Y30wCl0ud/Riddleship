@@ -1,13 +1,14 @@
 <%- include('../partials/header.ejs') %>
-    <ul>
-      <a href="/mychats">
-        <li><b>chat</b></li>
-      </a>
-      <a href="/contacts">
-        <li>contacts</li>
-      </a>
-    </ul>
-
+<nav>
+  <ul>
+    <li>
+      <a href="mychats"><b>chat</b></a>
+    </li>
+    <li>
+      <a href="contacts">contacts</a>
+    </li>
+  </ul>
+</nav>
     <%# loop through all active chats of the user %>
     <ul>
       <% results.forEach(function(results) { %>

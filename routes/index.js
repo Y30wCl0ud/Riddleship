@@ -3,7 +3,6 @@ const router = express.Router();
 const md5 = require('md5');
 const salt = 'MisterChocolateMintVanillaIceCreamThe3rd!Is3x3#PlaceChampion';
 
-var myID;
 
 // GET the homepage/index
 router.get('/' , function(req, res) {
@@ -42,9 +41,10 @@ router.route('/login') // harder to read this way imo
 
           req.session.loggedIn = 1;
           req.session.admin = results[0].admin; // check whether user is admin
-          req.session.ID = results[0].ID;
+          req.session.ID = results[0].userID;
           myID = req.session.ID; // set the global var to access own ID
           console.log(req.session.admin == true);
+          console.log(myID);
           if(req.session.admin) {
             res.redirect('/dashboard');
           } else {
@@ -80,6 +80,10 @@ router.post('/register', (req, res) => {
       about: req.body.about,
     }
     if(req.file !== undefined) {
+      fs.rename(req.file.path, req.file.destination + req.file.originalname, function(err){
+        if(err) return next(err);
+      });
+
       newUser.picture = req.file.originalname;
     }
 
@@ -112,7 +116,15 @@ router.get('/chat/:id', (req, res) => {
 });
 
 router.get('/contacts', (req, res) => {
-  res.render('general/contacts');
+  req.getConnection((err, connection) => {
+    if(err) return next(err);
+    connection.query('SELECT DISTINCT user.name, contact.userA, contact.userB FROM user JOIN contact ON user.userID = contact.userA OR user.userID = contact.userB WHERE ? = contact.userA OR ? = contact.userB', [myID, myID], (err, results) => {
+      console.log(results);
+      // res.locals.results = results;
+      res.send(results);
+    });
+  });
+  // res.render('general/contacts');
 });
 
 router.get('/contacts/menu', (req, res) => {
@@ -122,14 +134,26 @@ router.get('/contacts/menu', (req, res) => {
 router.get('/my_profile', (req, res) => {
   // picture = user.picture where id = myID
   console.log(myID);
-  res.locals.picture = 'klassenfoto.jpg';
-  res.render('general/my_profile');
+  req.getConnection((err, connection) => {
+    if(err) return next(err);
+    connection.query('SELECT *, TIMESTAMPDIFF(YEAR, dob, CURDATE()) AS age FROM user WHERE userID = ?', myID, (err, results) => {
+      res.locals.results = results[0];
+
+      res.locals.picture = 'admin1.jpg';
+      res.render('general/my_profile');
+    });
+  });
 });
 
 router.get('/profile/:id', (req, res) => {
-  res.locals.id = req.params.id;
-
-  res.render('general/profile');
+  req.getConnection((err, connection) => {
+    if(err) return next(err);
+    connection.query('SELECT *, TIMESTAMPDIFF(YEAR, dob, CURDATE()) AS age FROM user WHERE userID = ?', req.params.id, (err, results) => {
+      if(err) return next(err);
+      res.locals.results = results[0];
+      res.render('general/profile');
+    });
+  });
 });
 
 
