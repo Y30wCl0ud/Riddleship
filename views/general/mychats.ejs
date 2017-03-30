@@ -13,20 +13,24 @@
     <%# loop through all active chats of the user %>
     <section class="contacts">
       <ul>
-        <% results.forEach(function(results) { %>
+        <% for (var i = 0; i < results.length; i++) { %>
+
+          <% if (results[i].userID === myID) { %>
+            <% continue; %>
+          <% }; %>
+
           <li>
-            <a href="chat/<%= results.id %>">
-              <p> <b><%= results.name %></b> </p>
+            <a href="chat/<%= results[i].userID %>">
+              <p> <b><%= results[i].name %></b> </p>
               <p> last message time </p>
-              <p> last message preview </p>
+              <p> <%= results[i].message %> </p>
               <a href="/mychats/menu">
                 <button> menu </button>
               </a>
             </a>
           </li>
 
-
-        <% }) %>
+        <% } %>
       </ul>
     </section>
 

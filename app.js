@@ -1,12 +1,12 @@
 const express = require('express'),
-      path = require('path'),
       bodyparser = require('body-parser'),
-      fs = require('fs'),
       multer = require('multer'),
       session = require('express-session'),
       validator = require('express-validator'),
       mysql = require('mysql'),
       myConnection = require('express-myconnection');
+const fs = require('fs'),
+      path = require('path')
 
 const port = 3000;
 const app = express();
@@ -17,7 +17,6 @@ const index = require('./routes/index'),
       admin = require('./routes/admin');
 var myID;
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -27,13 +26,13 @@ var upload = multer({dest: 'public/uploads/'});
 
 // mysql connection
 app.use(myConnection(mysql, {
-  host: 'localhost',
-  user: 'student',
-  password: 'serverSide',
+  host: '127.0.0.1',
+  user: 'root',
+  password: 'root',
+  // socketPath : '/Applications/MAMP/tmp/mysql/mysql.sock',
   port: 3306,
   database: 'riddleshipdb'
 } , 'request'));
-
 
 // body parser middleware
 app.use(bodyparser.json());
@@ -47,16 +46,16 @@ app.use(upload.single('profilePic'));
 app.use(validator({
   errorFormatter: function(param, msg, value) {
       var namespace = param.split('.')
-      , root    = namespace.shift()
+      , root = namespace.shift()
       , formParam = root;
 
-    while(namespace.length) {
+    while (namespace.length) {
       formParam += '[' + namespace.shift() + ']';
     }
     return {
-      param : formParam,
-      msg   : msg,
-      value : value
+      param: formParam,
+      msg: msg,
+      value: value
     };
   }
 }));
@@ -67,28 +66,22 @@ app.use(session({
   saveUnitialized: true
 }));
 
-// set static path
+// Set static path
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Global variables
-
 app.use((req, res, next) => {
   res.locals.loggedIn = req.session.loggedIn;
   res.locals.admin = req.session.admin;
+  res.locals.myName = req.session.myName;
 
-
- // for local dev use
-  // res.locals.loggedIn = true;
-  // res.locals.admin = false;
+  // delete when db integration is fully complete
   res.locals.results = results;
-
   next();
 });
 
 
-
-
-// for the simple prototype now
+// for the simple prototype now - delete when db integration is fully complete
 var results = [{
   id: 1,
   name: 'John',
@@ -117,7 +110,7 @@ var results = [{
   reporter: 'John',
   reason: 'Ze is all meer dan een maand inactief in de riddle',
   date: '12-02-17'
-}, {
+  }, {
   id: 3,
   name: 'Jen',
   age: 27,
@@ -131,18 +124,13 @@ var results = [{
   reporter: 'John',
   reason: 'Ze is all meer dan een maand inactief in de riddle',
   date: '12-02-17'
-}]
+}];
 
-
-
-// use the defined routes
+// Use the defined routes
 app.use('/', index);
 app.use('/', user);
 app.use('/', admin);
 
-
-
-// open? listen to a port
 app.listen(port, () => {
   console.log(`Listening at port ${port}`);
 });

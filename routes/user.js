@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/meet', (req, res) => {
-  console.log(req.session.ID);
   req.getConnection((err, connection) => {
     if(err) return next(err);
 

@@ -1,14 +1,13 @@
-
 // search: temp
 //
 // search: check
 
 /*----------- variables & mixins -----------*/
 
-$primary_c: #FF9800;
-$headfont_c: #fff;
-$mainfont_c: #212121;
-$secfont_c: #757575;
+$primary-c: #FF9800;
+$headfont-c: #fff;
+$mainfont-c: #212121;
+$secfont-c: #757575;
 
 
 
@@ -35,13 +34,22 @@ html {
   // margin: 1rem;
 }
 
+main {
+  height: 86vh;
+  overflow-y: auto;
+  padding-bottom: 1rem;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 button, input[type="submit"] {
   padding: 0.4rem;
   border-radius: 2px;
-  border: 2px solid $primary_c;
+  border: 2px solid $primary-c;
 
   background-color: #fff;
-  color: $primary_c;
+  color: $primary-c;
   font-size: 100%;
 }
 
@@ -75,15 +83,15 @@ header {
   height: 7vh;
   max-height: 8rem;
 
-  background-color: $primary_c;
+  background-color: $primary-c;
 
   h2 {
-    color: $headfont_c;
+    color: $headfont-c;
   }
 
   button {
     width: 8rem;
-    color: $primary_c;
+    color: $primary-c;
     //check add transition
   }
   a {
@@ -113,8 +121,8 @@ nav {
     height: 7vh;
     max-height: 8rem;
 
-    background: $primary_c;
-    border-bottom: 4px solid $primary_c;
+    background: $primary-c;
+    border-bottom: 4px solid $primary-c;
 
     a {
       display: flex;
@@ -127,7 +135,7 @@ nav {
     }
     &:hover {
       background: #fff;
-      a { color: $primary_c  }
+      a { color: $primary-c  }
     }
     transition: all .3s;
   }
@@ -183,7 +191,7 @@ nav {
   border-bottom: 1px solid #000;
   p {
     width: 50%;
-    color: $secfont_c;
+    color: $secfont-c;
   }
 }
 
@@ -201,21 +209,19 @@ nav {
 }
 
 // check how button  a can be in a
-.contacts ul {
-  flex-direction: column;
+.contacts {
+  ul {
+    flex-direction: column;
+  }
   li {
-    margin-bottom: 1rem;
     justify-content: space-between;
-
+    margin-bottom: 1rem;
     // check
     border-bottom: 1px solid #000;
     & > a {
       display: flex;
       flex-flow: row wrap;
       justify-content: space-between;
-      & > * {
-        // flex: 1 0 100%;
-      }
     }
   }
   p {
@@ -229,13 +235,15 @@ nav {
 
 
 .menu {
+  align-self: flex-end;
   justify-content: center;
   // margin-top: auto;
-  align-self: flex-end;
 
-  a, button {
-    width: 100%;
+
+  a,
+  button {
     max-width: 30rem;
+    width: 100%;
   }
 
   a {

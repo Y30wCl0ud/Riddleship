@@ -3,6 +3,13 @@
 /*=============================================>>>>>
 = General =
 ===============================================>>>>>*/
+main {
+  height: 86vh;
+  overflow-y: auto;
+  padding-bottom: 1rem; }
+  main::-webkit-scrollbar {
+    display: none; }
+
 button, input[type="submit"] {
   padding: 0.4rem;
   border-radius: 2px;
@@ -118,25 +125,26 @@ nav {
 
 .contacts ul {
   flex-direction: column; }
-  .contacts ul li {
-    margin-bottom: 1rem;
-    justify-content: space-between;
-    border-bottom: 1px solid #000; }
-    .contacts ul li > a {
-      display: flex;
-      flex-flow: row wrap;
-      justify-content: space-between; }
-  .contacts ul p {
-    display: inline-block; }
-    .contacts ul p:last-of-type {
-      width: 100%; }
+.contacts li {
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #000; }
+  .contacts li > a {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between; }
+.contacts p {
+  display: inline-block; }
+  .contacts p:last-of-type {
+    width: 100%; }
 
 .menu {
-  justify-content: center;
-  align-self: flex-end; }
-  .menu a, .menu button {
-    width: 100%;
-    max-width: 30rem; }
+  align-self: flex-end;
+  justify-content: center; }
+  .menu a,
+  .menu button {
+    max-width: 30rem;
+    width: 100%; }
   .menu a {
     padding: 0 1rem; }
 

@@ -5,6 +5,7 @@
     <a href=""><button>change photo</button></a>
   </header>
 
+<main class="profileView">
   <section class="profilePic">
     <img src="uploads/<%= picture %>" alt="">
   </section>
@@ -21,8 +22,10 @@
     <!-- <input type="text" placeholder="Tell a bit about yourself - max 300 characters" value=" <%= results.about %> "> -->
     <p> <%= results.about %> </p>
   </section>
-
   <div class="menu">
     <a href="/my_profile/logout"><button>logout</button></a>
   </div>
+</main>
+
+
 <%- include('../partials/footer.ejs') %>

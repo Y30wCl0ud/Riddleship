@@ -14,12 +14,14 @@
   <section class="contacts">
     <ul>
       <% results.forEach(function(results) { %>
+        <% if (results.name === myName) { %>
+          <% return; %>
+        <% } %>
         <li>
-          <a href="chat/<%= results.id %>">
+          <a href="profile/<%= results.userID %>">
             <p> <b><%= results.name %></b> </p>
           </a>
           <a href="/contacts/menu"><button> menu </button></a>
-          
         </li>
       <% }) %>
 
