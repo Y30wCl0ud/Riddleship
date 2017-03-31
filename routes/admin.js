@@ -34,7 +34,7 @@ router.get('/users/online', (req, res) => {
   res.render('admin/users_online');
 });
 
-router.get('/users/blocked', (req, res) => {
+router.get('/users/banned', (req, res) => {
   res.render('admin/users_ban');
 });
 

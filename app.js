@@ -120,7 +120,7 @@ var results = [{
   about: 'hi this is about me and stuff',
   email: 'jen@live.com',
 
-  reported: true,
+  reported: false,
   reporter: 'John',
   reason: 'Ze is all meer dan een maand inactief in de riddle',
   date: '12-02-17'

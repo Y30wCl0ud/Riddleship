@@ -1,7 +1,7 @@
 <%- include('../partials/header.ejs') %>
   <nav>
     <ul>
-      <li>
+      <li class="location">
         <a href="mychats"><b>chat</b></a>
       </li>
       <li>
@@ -22,7 +22,7 @@
           <li>
             <a href="chat/<%= results[i].userID %>">
               <p> <b><%= results[i].name %></b> </p>
-              <p> last message time </p>
+              <p> <%= results[i].date %> </p>
               <p> <%= results[i].message %> </p>
               <a href="/mychats/menu">
                 <button> menu </button>

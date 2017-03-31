@@ -3,13 +3,17 @@
   <header>
     <a href="/mychats">back</a>
     <h2>
+      <a href="/profile/<%=id%>">
       <!-- need a better way -->
       <% for (var i = 0; i < results.length; i++) { %>
         <% if (results[i].name != myName) { %>
-          <%= results[i].name %>
+            <%= results[i].name %>
           <% break; %>
-        <% } %>
+        <% } else { %>
+          -
+          <% } %>
       <% } %>
+      </a>
     </h2>
   </header>
   <section>
@@ -25,8 +29,8 @@
       <% }) %>
     </ul>
   </section>
-  <form action="">
-    <input type="text" placeholder="type hier wat in om wat te zeggen">
+  <form action="/chat/<%=id%>" method="post">
+    <input type="text" placeholder="type hier wat in om wat te zeggen" name="message">
     <input type="submit">
   </form>
 

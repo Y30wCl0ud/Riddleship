@@ -17,7 +17,7 @@
     <% if (admin) { %>
       <img src="https://unsplash.it/1200/1200" alt="">
     <% } else { %>
-      <p>Sorry, the photo is only visible if you have added each other as contacts.</p>
+      <p>No photo added yet.</p>
     <% } %>
   </section>
 
@@ -48,7 +48,8 @@
         <li><a href="block">ban user</a></li>
       </ul>
     <% } else { %>
-      <a href="riddle"><button>send riddle request</button></a>
+      <!-- <a href="riddle"><button>send riddle request</button></a> -->
+      <a href="/chat/<%= results.userID %>"><button>send riddle request</button></a>
     <% } %>
   </div>
 

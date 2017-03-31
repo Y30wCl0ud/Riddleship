@@ -80,6 +80,11 @@ nav {
       nav li:hover a {
         color: #FF9800; }
 
+.location {
+  background: #fff; }
+  .location a {
+    color: #FF9800; }
+
 /*=============================================>>>>>
 = Components =
 ===============================================>>>>>*/

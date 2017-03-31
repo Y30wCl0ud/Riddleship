@@ -45,7 +45,7 @@ router.post('/login', (req, res, next) => {
             myID = req.session.ID; // Set the global var to access own ID
 
             console.log(myID);
-            if(req.session.admin) {
+            if (req.session.admin) {
               res.redirect('/dashboard');
             } else {
               res.redirect('/meet');
@@ -93,7 +93,7 @@ router.post('/register', (req, res, next) => {
     req.getConnection((err, connection) => {
       if (err) return next(err);
 
-      connection.query('INSERT INTO user set ?', [newUser], (err, results) => {
+      connection.query('INSERT INTO user SET ?', [newUser], (err, results) => {
         if (err) return next(err);
 
         res.redirect('/');
@@ -102,14 +102,14 @@ router.post('/register', (req, res, next) => {
   }
 });
 
-/*=============================================>>>>>
+/*  =============================================>>>>>
 = General links =
-===============================================>>>>>*/
+===============================================>>>>>  */
 
 router.get('/mychats', (req, res, next) => {
   req.getConnection((err, connection) => {
     if (err) return next(err);
-    connection.query('SELECT DISTINCT user.userID, user.name, chat.message FROM user JOIN chat ON user.userID = chat.ontvanger WHERE ? = chat.verzender OR ? = chat.ontvanger', [myID, myID], (err, results) => {
+    connection.query('SELECT DISTINCT user.userID, user.name, chat.message, chat.date FROM user JOIN chat ON (user.userID = chat.ontvanger OR user.userID = chat.verzender) WHERE (? = chat.verzender OR ? = chat.ontvanger) GROUP BY user.name ORDER BY chat.date DESC', [myID, myID], (err, results) => {
       if (err) return next(err);
       res.render('general/mychats', {results: results});
     });
@@ -125,9 +125,27 @@ router.get('/chat/:id', (req, res, next) => {
     if (err) return next(err);
     connection.query('SELECT DISTINCT user.userID, user.name, chat.verzender, chat.ontvanger, chat.message, chat.date, DATE(chat.date) AS fullDate FROM user JOIN chat ON user.userID = chat.verzender WHERE ? = chat.verzender AND ? = chat.ontvanger OR ? = chat.verzender AND ? = chat.ontvanger ORDER BY chat.date ASC', [myID, req.params.id, req.params.id, myID], (err, results) => {
       if (err) return next(err);
-      res.render('general/chat', {results: results});
+      res.render('general/chat', {results: results, id: req.params.id});
     });
   });
+});
+
+router.post('/chat/:id', (req, res, next) => {
+  const postMessage = {
+    verzender: myID,
+    ontvanger: req.params.id,
+    message: req.body.message
+  };
+
+  if (req.body.message.length > 0) {
+    req.getConnection((err, connection) => {
+      if (err) return next(err);
+      connection.query('INSERT INTO chat SET ?', [postMessage], (err, results) => {
+        if (err) return next(err);
+        res.redirect(`/chat/${req.params.id}`);
+      });
+    });
+  }
 });
 
 router.get('/contacts', (req, res, next) => {
@@ -160,7 +178,6 @@ router.get('/profile/:id', (req, res, next) => {
     if (err) return next(err);
     connection.query('SELECT *, TIMESTAMPDIFF(YEAR, dob, CURDATE()) AS age FROM user WHERE userID = ?', req.params.id, (err, results) => {
       if (err) return next(err);
-      // res.locals.results = results[0];
       res.render('general/profile', {results: results[0]});
     });
   });
