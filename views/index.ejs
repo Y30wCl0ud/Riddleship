@@ -1,24 +1,33 @@
 <%- include('./partials/header.ejs') %>
 
+<section class="home">
   <h1>Riddleschip</h1>
 
-  <a href="login"><button type="button" name="button">login</button></a>
-  <a href="register"><button type="button" name="button">register</button></a>
+  <% if (error) { %>
+    <div>
+      <p><%= error %></p>
+    </div>
+  <% } %>
 
+  <form action="/" method="post">
+    <fieldset>
+      <input type="email" name="email" value="" placeholder="email">
+      <input type="password" name="password" value="" placeholder="password">
+      <input type="submit" name="submit" value="Login">
 
+    </fieldset>
+  </form>
 
-<p>This is a online dating platform where you get to know each other while solving a riddle game.
-</p>
-<p>
-  The feeling of the old chance meeting and getting to know each other with a playful twist.
-</p>
+  <div>
+    <p>
+    The feeling of the old chance meeting and getting to know each other with a playful twist.
+    </p>
+    <p>This is a online dating platform where you get to know each other while solving a riddle game.
+    </p>
+  </div>
 
-<%# test place below for easier typing %>
+  <a href="register">I am new here</a>
 
-<form class="" action="index.html" >
-  <%# method="post"%>
-</form>
-
-
+</section>
 
 <%- include('./partials/footer.ejs') %>

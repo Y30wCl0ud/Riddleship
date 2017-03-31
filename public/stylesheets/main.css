@@ -44,6 +44,7 @@ header {
   header h2 {
     color: #fff; }
   header button {
+    max-height: 2.5rem;
     width: 8rem;
     color: #FF9800; }
   header a {
@@ -83,6 +84,35 @@ nav {
 .location {
   background: #fff; }
   .location a {
+    color: #FF9800; }
+
+/*=============================================>>>>>
+= Home, froms =
+===============================================>>>>>*/
+form input:not([type="file"]):not([type="submit"]) {
+  height: 2rem;
+  padding: 0 .5rem;
+  box-shadow: none;
+  border: 1px solid #757575;
+  border-radius: 2px; }
+  form input:not([type="file"]):not([type="submit"]):not(:last-child) {
+    margin-bottom: 1rem; }
+form input:focus {
+  outline: none; }
+
+.home {
+  max-width: 25rem;
+  margin: auto;
+  text-align: center; }
+  .home form {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around; }
+  .home fieldset {
+    border: none; }
+    .home fieldset input, .home fieldset button {
+      width: 100%; }
+  .home a {
     color: #FF9800; }
 
 /*=============================================>>>>>

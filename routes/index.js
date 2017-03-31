@@ -6,7 +6,7 @@ const salt = 'MisterChocolateMintVanillaIceCreamThe3rd!Is3x3#PlaceChampion';
 
 // GET the homepage/index
 router.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', {error: ''});
   // Need to redirect depending on logged in and role
 });
 
@@ -14,7 +14,7 @@ router.get('/login', (req, res) => {
     res.render('login', {error: ''});
   })
 
-router.post('/login', (req, res, next) => {
+router.post('/', (req, res, next) => {
     // Validate input
     req.check('email', 'Invalid email').isEmail().notEmpty();
     req.check('password', 'Invalid password').notEmpty();
@@ -51,7 +51,7 @@ router.post('/login', (req, res, next) => {
               res.redirect('/meet');
             }
           } else {
-            res.render('login', {error: 'The email and/or password is incorrect.'});
+            res.render('index', {error: 'The email and/or password is incorrect.'});
           }
         });
       });
@@ -109,7 +109,7 @@ router.post('/register', (req, res, next) => {
 router.get('/mychats', (req, res, next) => {
   req.getConnection((err, connection) => {
     if (err) return next(err);
-    connection.query('SELECT DISTINCT user.userID, user.name, chat.message, chat.date FROM user JOIN chat ON (user.userID = chat.ontvanger OR user.userID = chat.verzender) WHERE (? = chat.verzender OR ? = chat.ontvanger) GROUP BY user.name ORDER BY chat.date DESC', [myID, myID], (err, results) => {
+    connection.query('SELECT DISTINCT user.userID, user.name, chat.message, CONCAT(LEFT(chat.message, 40), "...") AS shortMsg,chat.date FROM user JOIN chat ON (user.userID = chat.ontvanger OR user.userID = chat.verzender) WHERE (? = chat.verzender OR ? = chat.ontvanger) GROUP BY user.name ORDER BY chat.date DESC', [myID, myID], (err, results) => {
       if (err) return next(err);
       res.render('general/mychats', {results: results});
     });
@@ -162,17 +162,6 @@ router.get('/contacts/menu', (req, res) => {
   res.render('general/contacts_menu');
 });
 
-router.get('/my_profile', (req, res, next) => {
-  // picture = user.picture where id = myID
-  req.getConnection((err, connection) => {
-    if (err) return next(err);
-    connection.query('SELECT *, TIMESTAMPDIFF(YEAR, dob, CURDATE()) AS age FROM user WHERE userID = ?', myID, (err, results) => {
-      if (err) return next(err);
-      res.render('general/my_profile', {results: results[0], picture: 'admin1.jpg'});
-    });
-  });
-});
-
 router.get('/profile/:id', (req, res, next) => {
   req.getConnection((err, connection) => {
     if (err) return next(err);
@@ -181,6 +170,10 @@ router.get('/profile/:id', (req, res, next) => {
       res.render('general/profile', {results: results[0]});
     });
   });
+});
+
+router.get('/my_profile/edit', (req, res, next) => {
+  res.render('general/edit');
 });
 
 // Logout and redirect
