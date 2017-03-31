@@ -75,7 +75,7 @@ app.use((req, res, next) => {
   res.locals.myName = req.session.myName;
 
   // delete when db integration is fully complete
-  res.locals.results = results;
+  // res.locals.results = results;
   next();
 });
 

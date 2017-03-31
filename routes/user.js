@@ -12,14 +12,17 @@ router.get('/meet', (req, res) => {
       res.render('user/meet');
     });
   });
-
-  // for local testing
-  // res.locals.results = results;
-  // res.render('user/meet');
 });
 
 router.get('/meet_random', (req, res) => {
-  res.render('user/meet_random');
+  req.getConnection((err, connection) => {
+    if (err) return next(err);
+    connection.query('SELECT userID FROM user WHERE userID != ?', myID, (err, results) => {
+      const i = Math.floor(Math.random() * results.length);
+
+      res.render('user/meet_random', {results: results[i].userID});
+    });
+  });
 });
 
 

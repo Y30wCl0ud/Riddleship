@@ -18,15 +18,16 @@
   </header>
   <section>
     <ul>
-      <% results.forEach(function(results) { %>
+      <% for (var i = 0; i < results.length; i++) { %>
+        <% if (results[i].message == null) {break;} %>
         <i>
-          <%= results.name %>
+          <%= results[i].name %>
         </i>
         <li>
-          <%= results.message %>
+          <%= results[i].message %>
         </li>
         <br />
-      <% }) %>
+      <% } %>
     </ul>
   </section>
   <form action="/chat/<%=id%>" method="post">

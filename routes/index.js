@@ -96,7 +96,6 @@ router.post('/register', (req, res, next) => {
 
       connection.query('INSERT INTO user SET ?', [newUser], (err, results) => {
         if (err) return next(err);
-
         res.redirect('/');
       });
     });
@@ -126,7 +125,15 @@ router.get('/chat/:id', (req, res, next) => {
     if (err) return next(err);
     connection.query('SELECT DISTINCT user.userID, user.name, chat.verzender, chat.ontvanger, chat.message, chat.date, DATE(chat.date) AS fullDate FROM user JOIN chat ON user.userID = chat.verzender WHERE ? = chat.verzender AND ? = chat.ontvanger OR ? = chat.verzender AND ? = chat.ontvanger ORDER BY chat.date ASC', [myID, req.params.id, req.params.id, myID], (err, results) => {
       if (err) return next(err);
-      res.render('general/chat', {results: results, id: req.params.id});
+
+      // if there are messages display them else show the name of the partner only
+      if (results.length > 0) {
+        res.render('general/chat', {results: results, id: req.params.id});
+      } else {
+        connection.query('SELECT * FROM user WHERE userID = ?', req.params.id, (err, results) => {
+          res.render('general/chat', {results: results, id: req.params.id});
+        });
+      }
     });
   });
 });
@@ -154,7 +161,20 @@ router.get('/contacts', (req, res, next) => {
     if (err) return next(err);
     connection.query('SELECT DISTINCT user.userID ,user.name, contact.userA, contact.userB FROM user JOIN contact ON user.userID = contact.userA OR user.userID = contact.userB WHERE ? = contact.userA OR ? = contact.userB', [myID, myID], (err, results) => {
       if (err) return next(err);
-      res.render('general/contacts', {results: results});
+
+      // if there are results show them else add 2/admin to contacts
+      if (results.length > 0) {
+        res.render('general/contacts', {results: results});
+      } else {
+        const addContact = {
+          userA: 2,
+          userB: myID
+        };
+        connection.query('INSERT INTO contact SET ?', [addContact], (err, results) => {
+          // redirect because results is not defined yet
+          res.redirect(req.get('referer'));
+        });
+      }
     });
   });
 });

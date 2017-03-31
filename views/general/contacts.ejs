@@ -13,17 +13,17 @@
 
   <section class="contacts">
     <ul>
-      <% results.forEach(function(results) { %>
-        <% if (results.name === myName) { %>
-          <% return; %>
+      <% for (var i = 0; i < results.length; i++) { %>
+        <% if (results[i].name === myName) { %>
+          <% continue; %>
         <% } %>
         <li>
           <a href="profile/<%= results.userID %>">
-            <p> <b><%= results.name %></b> </p>
+            <p> <b><%= results[i].name %></b> </p>
           </a>
           <a href="/contacts/menu"><button> menu </button></a>
         </li>
-      <% }) %>
+      <% } %>
 
 
     </ul>
