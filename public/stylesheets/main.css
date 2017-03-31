@@ -147,7 +147,11 @@ form input:focus {
   border-bottom: 1px solid #000; }
   .profilePic p {
     width: 50%;
-    color: #757575; }
+    color: #757575;
+    text-align: center; }
+  .profilePic img {
+    max-height: 25rem;
+    max-width: auto; }
 
 .userInfo h2 {
   display: inline-block; }

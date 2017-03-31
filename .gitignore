@@ -36,6 +36,13 @@
 ehthumbs.db
 Thumbs.db
 
+# Images #
+##########
+
+*.png
+*.jpg
+*.jpeg
+
 # Ignore all modules/items in git node_modules folder
 node_modules/
 

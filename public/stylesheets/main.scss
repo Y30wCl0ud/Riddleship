@@ -243,6 +243,11 @@ form {
   p {
     width: 50%;
     color: $secfont-c;
+    text-align: center;
+  }
+  img {
+    max-height: 25rem;
+    max-width: auto;
   }
 }
 

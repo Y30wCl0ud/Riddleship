@@ -14,8 +14,8 @@
   </header>
 
   <section class="profilePic">
-    <% if (admin) { %>
-      <img src="https://unsplash.it/1200/1200" alt="">
+    <% if (results.picture) { %>
+      <img src="uploads/<%= results.picture %>" alt="">
     <% } else { %>
       <p>No photo added yet.</p>
     <% } %>
@@ -23,7 +23,7 @@
 
   <section class="userInfo">
     <h2> <%= results.name %> </h2>
-    <p>, <%= results.age %> </p>
+    <p>, <%= results.age %> <%= results.gender %></p>
 
     <% if (results.location) { %>
       <p> <%= results.location %> </p>

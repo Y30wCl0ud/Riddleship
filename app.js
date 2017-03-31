@@ -5,8 +5,7 @@ const express = require('express'),
       validator = require('express-validator'),
       mysql = require('mysql'),
       myConnection = require('express-myconnection');
-const fs = require('fs'),
-      path = require('path')
+const path = require('path');
 
 const port = 3000;
 const app = express();

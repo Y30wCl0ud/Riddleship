@@ -1,5 +1,6 @@
 const express = require('express');
 const md5 = require('md5');
+const fs = require('fs');
 
 const router = express.Router();
 const salt = 'MisterChocolateMintVanillaIceCreamThe3rd!Is3x3#PlaceChampion';
@@ -172,8 +173,47 @@ router.get('/profile/:id', (req, res, next) => {
   });
 });
 
+router.get('/my_profile', (req, res, next) => {
+  // picture = user.picture where id = myID
+  req.getConnection((err, connection) => {
+    if (err) return next(err);
+    connection.query('SELECT *, TIMESTAMPDIFF(YEAR, dob, CURDATE()) AS age FROM user WHERE userID = ?', myID, (err, results) => {
+      if (err) return next(err);
+      res.render('general/my_profile', {results: results[0], picture: 'admin1.jpg'});
+    });
+  });
+});
+
+// Partly from Source: CMD back-end
 router.get('/my_profile/edit', (req, res, next) => {
-  res.render('general/edit');
+  req.getConnection((err, connection) => {
+    if (err) return next(err);
+    connection.query('SELECT * FROM user WHERE userID = ?', myID, (err, results) => {
+      res.render('general/edit', {results: results[0]});
+    });
+  });
+});
+
+router.post('/my_profile/edit', (req, res, next) => {
+  const newInfo = {
+    location: req.body.location,
+    minAge: req.body.minAge,
+    maxAge: req.body.maxAge,
+    about: req.body.about,
+  };
+
+  if (req.file !== undefined) {
+    fs.rename(req.file.path, req.file.destination + req.file.originalname, (err) => {
+      if (err) return next(err);
+    });
+    newInfo.picture = req.file.originalname;
+  }
+  req.getConnection((err, connection) => {
+    if (err) return next(err);
+    connection.query('UPDATE user SET ? WHERE userID = ?', [newInfo, myID], (err, results) => {
+      res.redirect('/my_profile');
+    });
+  });
 });
 
 // Logout and redirect

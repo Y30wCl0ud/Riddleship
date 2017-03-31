@@ -1,25 +1,30 @@
 <%- include('../partials/header.ejs') %>
 
   <header>
-    <a href="">edit</a>
-    <a href=""><button>change photo</button></a>
+    <a href="/my_profile/edit">edit</a>
+    <%# <a href=""><button>change photo</button></a>%>
   </header>
 
 <main class="profileView">
   <section class="profilePic">
-    <img src="uploads/<%= picture %>" alt="">
+    <% if (results.picture) { %>
+      <img src="uploads/<%= results.picture %>" alt="">
+    <% } else { %>
+      <img src="uploads/<%= picture %>" alt="">
+    <% } %>
   </section>
 
   <section class="userInfo">
     <h2>Name: <%= results.name %> </h2>
     <br />
     <p>Gender: <%= results.gender %> </p>
-    <p>Looking for: <%= results.lookingFor %> </p>
     <p>Age: <%= results.age %> </p>
+    <p>Looking for a: <%= results.lookingFor %> </p>
+    <p>Between: <%= results.minAge %> &amp; <%= results.maxAge %></p>
+
     <p>Location: <%= results.location %> </p>
 
     <h3>About you:</h3>
-    <!-- <input type="text" placeholder="Tell a bit about yourself - max 300 characters" value=" <%= results.about %> "> -->
     <p> <%= results.about %> </p>
   </section>
   <div class="menu">

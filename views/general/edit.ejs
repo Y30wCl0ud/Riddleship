@@ -1,6 +1,28 @@
 <%- include('../partials/header.ejs') %>
 
+<section>
+  <h1>Edit profile</h1>
+  <form class="" action="/my_profile/edit" method="post" enctype="multipart/form-data">
+    <fieldset>
+      <label for="location">Locatie</label>
+      <input id="location" type="text" placeholder="city/province" name="location" value="<%= results.location %>">
+      <label for="about">About yourself</label>
+      <input id="about" type="text" placeholder="Tell others a bit about yourself" name="about" value="<%= results.about %>">
+      <label for="profilePic">Picture</label>
+      <input id="profilePic" type="file" name="profilePic">
+    </fieldset>
+    <fieldset>
+      <p>between: x - x </p>
+      <label for="minAge">min(18)</label>
+      <input id="minAge" type="number" min="18" max="100" name="minAge" value="<%= results.minAge %>">
+      <label for="maxAge">max(100)</label>
+      <input id="maxAge" type="number" min="18" max="100" name="maxAge" value="<%= results.maxAge %>">
+    </fieldset>
+    <a href="/my_profile"><button type="button">Back</button></a>
+    <input type="submit" value="Confirm">
+  </form>
 
+</section>
 
 
 <%- include('../partials/footer.ejs') %>
