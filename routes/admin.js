@@ -9,7 +9,7 @@ router.get('/reported', (req, res) => {
   res.render('admin/reported');
 });
 
-// to be removed
+// To be removed
 router.get('/reported_o', (req, res) => {
   res.render('admin/reported_o');
 });
@@ -22,8 +22,6 @@ router.get('/users', (req, res) => {
       res.render('admin/users');
     });
   });
-
-  // res.render('admin/users');
 });
 
 router.get('/users/menu', (req, res) => {
@@ -45,6 +43,5 @@ router.get('/users/ban', (req, res) => {
 router.get('/profile/menu', () => {
   res.render('admin/profile_menu');
 });
-
 
 module.exports = router;
