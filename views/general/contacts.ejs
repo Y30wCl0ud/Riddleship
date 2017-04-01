@@ -11,23 +11,50 @@
 </nav>
 <%# loop through all contacts of the user %>
 
-  <section class="contacts">
+  <main class="contentList">
     <ul>
       <% for (var i = 0; i < results.length; i++) { %>
         <% if (results[i].name === myName) { %>
           <% continue; %>
         <% } %>
         <li>
-          <a href="profile/<%= results.userID %>">
+          <a href="profile/<%= results[i].userID %>">
             <p> <b><%= results[i].name %></b> </p>
           </a>
           <a href="/contacts/menu"><button> menu </button></a>
         </li>
+
+
+        <ul class="userMenu hide">
+        <% if (admin) { %>
+          <li>
+            <a href="profile/<%= results[i].userID %>">send message</a>
+          </li>
+          <li>
+            <a href="profile/<%= results[i].userID %>">show profile</a>
+          </li>
+          <li>
+            <a href="profile/<%= results[i].userID %>">delete contact  atm</a>
+          </li>
+          <li>
+            <a href="profile/<%= results[i].userID %>">ban user</a>
+          </li>
+
+        <% } else { %>
+          <li>
+            <a href="profile/<%= results[i].userID %>">show profile</a>
+          </li>
+          <li>
+            <a href="profile/<%= results[i].userID %>">report user</a>
+          </li>
+        <% } %>
+        </ul>
+
       <% } %>
 
 
     </ul>
-  </section>
+  </main>
 
-
+  <script src='/scripts/main.js'></script>
 <%- include('../partials/footer.ejs') %>

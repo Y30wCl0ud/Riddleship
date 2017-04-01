@@ -37,7 +37,8 @@ html {
 main {
   height: 86vh;
   overflow-y: auto;
-  padding-bottom: 1rem;
+  padding: 0 1rem;
+  // padding-bottom: 1rem;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -54,7 +55,7 @@ button, input[type="submit"] {
 }
 
 // default padding
-header, section, form {
+header, form {
   padding: .5rem 1rem;
 }
 
@@ -62,12 +63,11 @@ header, section, form {
 header,
 nav ul,
 nav li,
-// .home,
 .meetUsers,
 .profilePic,
 .menu,
-.contacts ul,
-.contacts li {
+.contentList > ul,
+.contentList li {
   display: flex;
 
 }
@@ -149,7 +149,7 @@ nav {
 }
 
 /*=============================================>>>>>
-= Home, froms =
+= Home, forms =
 ===============================================>>>>>*/
 
 form {
@@ -225,14 +225,12 @@ form {
   }
 }
 
-// profile(user)
-// random too?
 .profilePic {
   height: 40vh;
   max-height: 25rem;
   justify-content: center;
   align-items: center;
-
+  margin: 0 -1rem;
   margin-bottom: 1rem;
   padding: initial;
 
@@ -265,18 +263,19 @@ form {
 }
 
 // check how button  a can be in a
-.contacts {
-  ul {
+.contentList {
+  & > ul {
     flex-direction: column;
+    margin-top: 1rem;
   }
   li {
     justify-content: space-between;
     margin-bottom: 1rem;
-    // check
     border-bottom: 1px solid #000;
+    padding-bottom: 1rem;
     & > a {
       display: flex;
-      flex-flow: row wrap;
+      flex-flow: column wrap;
       justify-content: space-between;
     }
   }
@@ -293,8 +292,6 @@ form {
 .menu {
   align-self: flex-end;
   justify-content: center;
-  // margin-top: auto;
-
 
   a,
   button {
@@ -303,6 +300,13 @@ form {
   }
 
   a {
-    padding: 0 1rem;
+    margin: 1rem 0;
   }
+}
+
+
+
+.hide {
+  display: none;
+  // visibility: hidden;
 }

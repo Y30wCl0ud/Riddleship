@@ -6,7 +6,7 @@
 main {
   height: 86vh;
   overflow-y: auto;
-  padding-bottom: 1rem; }
+  padding: 0 1rem; }
   main::-webkit-scrollbar {
     display: none; }
 
@@ -18,7 +18,7 @@ button, input[type="submit"] {
   color: #FF9800;
   font-size: 100%; }
 
-header, section, form {
+header, form {
   padding: .5rem 1rem; }
 
 header,
@@ -27,8 +27,8 @@ nav li,
 .meetUsers,
 .profilePic,
 .menu,
-.contacts ul,
-.contacts li {
+.contentList > ul,
+.contentList li {
   display: flex; }
 
 /*=============================================>>>>>
@@ -87,7 +87,7 @@ nav {
     color: #FF9800; }
 
 /*=============================================>>>>>
-= Home, froms =
+= Home, forms =
 ===============================================>>>>>*/
 form input:not([type="file"]):not([type="submit"]) {
   height: 2rem;
@@ -141,6 +141,7 @@ form input:focus {
   max-height: 25rem;
   justify-content: center;
   align-items: center;
+  margin: 0 -1rem;
   margin-bottom: 1rem;
   padding: initial;
   overflow: hidden;
@@ -162,19 +163,21 @@ form input:focus {
 .userInfo h3 {
   border-top: 1px solid #000; }
 
-.contacts ul {
-  flex-direction: column; }
-.contacts li {
+.contentList > ul {
+  flex-direction: column;
+  margin-top: 1rem; }
+.contentList li {
   justify-content: space-between;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #000; }
-  .contacts li > a {
+  border-bottom: 1px solid #000;
+  padding-bottom: 1rem; }
+  .contentList li > a {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column wrap;
     justify-content: space-between; }
-.contacts p {
+.contentList p {
   display: inline-block; }
-  .contacts p:last-of-type {
+  .contentList p:last-of-type {
     width: 100%; }
 
 .menu {
@@ -185,6 +188,9 @@ form input:focus {
     max-width: 30rem;
     width: 100%; }
   .menu a {
-    padding: 0 1rem; }
+    margin: 1rem 0; }
+
+.hide {
+  display: none; }
 
 /*# sourceMappingURL=main.css.map */

@@ -9,9 +9,9 @@
       </li>
     </ul>
   </nav>
-
-    <%# loop through all contacts of the user %>
+  <main>
     <ul>
+      <%# loop through all contacts of the user %>
       <% results.forEach(function(results) { %>
         <a href="chat/<%= results.id %>">
           <li>
@@ -39,6 +39,6 @@
 
 
     </ul>
-
+  </main>
 
 <%- include('../partials/footer.ejs') %>

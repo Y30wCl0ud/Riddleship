@@ -11,7 +11,7 @@
   </nav>
 
     <%# loop through all active chats of the user %>
-    <section class="contacts">
+    <main class="contentList">
       <ul>
         <% for (var i = 0; i < results.length; i++) { %>
 
@@ -30,9 +30,38 @@
             </a>
           </li>
 
+
+          <ul class="userMenu hide">
+          <% if (admin) { %>
+            <li>
+              <a href="profile/<%= results[i].userID %>">add to contacts</a>
+            </li>
+            <li>
+              <a href="profile/<%= results[i].userID %>">show profile</a>
+            </li>
+            <li>
+              <a href="profile/<%= results[i].userID %>">delete chat atm</a>
+            </li>
+            <li>
+              <a href="profile/<%= results[i].userID %>">ban user</a>
+            </li>
+          <% } else { %>
+            <li>
+              <a href="profile/<%= results[i].userID %>">show profile</a>
+            </li>
+            <li>
+              <a href="profile/<%= results[i].userID %>">report user</a>
+            </li>
+            <li>
+              <a href="profile/<%= results[i].userID %>">delete chat atm</a>
+            </li>
+          <% } %>
+          </ul>
+
+
         <% } %>
       </ul>
-    </section>
+    </main>
 
-
+<script src='/scripts/main.js'></script>
 <%- include('../partials/footer.ejs') %>
