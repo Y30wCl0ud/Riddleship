@@ -116,10 +116,6 @@ router.get('/mychats', (req, res, next) => {
   });
 });
 
-router.get('/mychats/menu', (req, res) => {
-  res.render('general/mychats_menu');
-});
-
 router.get('/chat/:id', (req, res, next) => {
   req.getConnection((err, connection) => {
     if (err) return next(err);
@@ -173,16 +169,12 @@ router.get('/contacts', (req, res, next) => {
         };
         connection.query('INSERT INTO contact SET ?', [addContact], (err, results) => {
           if (err) return next(err);
-          // Redirect because results is not defined yet
+          // Redirect to self because results is not defined yet
           res.redirect(req.get('referer'));
         });
       }
     });
   });
-});
-
-router.get('/contacts/menu', (req, res) => {
-  res.render('general/contacts_menu');
 });
 
 router.get('/profile/:id', (req, res, next) => {

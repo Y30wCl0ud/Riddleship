@@ -25,10 +25,6 @@ router.get('/users', (req, res) => {
   });
 });
 
-router.get('/users/menu', (req, res) => {
-  res.render('admin/users_menu');
-});
-
 router.get('/users/online', (req, res) => {
   res.render('admin/users_online');
 });
@@ -101,10 +97,6 @@ router.post('/users/delete/:id', (req, res) => {
       res.redirect('/users/');
     });
   });
-});
-
-router.get('/profile/menu', () => {
-  res.render('admin/profile_menu');
 });
 
 module.exports = router;
