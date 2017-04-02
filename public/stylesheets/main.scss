@@ -30,21 +30,22 @@ $secfont-c: #757575;
 /*=============================================>>>>>
 = General =
 ===============================================>>>>>*/
-html {
-  // margin: 1rem;
-}
-
 main {
   height: 86vh;
   overflow-y: auto;
-  padding: 0 1rem;
+  padding: 1rem 1rem;
   // padding-bottom: 1rem;
   &::-webkit-scrollbar {
     display: none;
   }
+  & > ul, & > table {
+    flex-direction: column;
+  }
 }
 
 button, input[type="submit"] {
+  max-height: 2.5rem;
+
   padding: 0.4rem;
   border-radius: 2px;
   border: 2px solid $primary-c;
@@ -91,10 +92,9 @@ header {
   }
 
   button {
-    max-height: 2.5rem;
     width: 8rem;
     color: $primary-c;
-    //check add transition
+    //check add hover transition
   }
   a {
     color: #fff;
@@ -149,7 +149,7 @@ nav {
 }
 
 /*=============================================>>>>>
-= Home, forms =
+= Home, forms, table =
 ===============================================>>>>>*/
 
 form {
@@ -191,7 +191,31 @@ form {
   }
 }
 
+table {
+  width: 100%;
+  text-align: left
+}
 
+tbody {
+  td {
+    line-height: 3rem;
+    &:last-of-type {
+      text-align: right;
+    }
+  }
+  ul {
+    margin-bottom: 1rem;
+  }
+  button {}
+}
+
+// Spacing from : http://stackoverflow.com/questions/9258754/spacing-between-thead-and-tbody
+tbody:before {
+  content: "-";
+  display: block;
+  line-height: .5rem;
+  color: transparent;
+}
 
 /*=============================================>>>>>
 = Components =
@@ -230,7 +254,7 @@ form {
   max-height: 25rem;
   justify-content: center;
   align-items: center;
-  margin: 0 -1rem;
+  margin: -1rem;
   margin-bottom: 1rem;
   padding: initial;
 
@@ -264,30 +288,36 @@ form {
 
 // check how button  a can be in a
 .contentList {
-  & > ul {
-    flex-direction: column;
-    margin-top: 1rem;
-  }
   li {
     justify-content: space-between;
     margin-bottom: 1rem;
     border-bottom: 1px solid #000;
-    padding-bottom: 1rem;
     & > a {
       display: flex;
       flex-flow: column wrap;
       justify-content: space-between;
+      width: 100%;
+      padding-bottom: 1rem;
     }
+  }
+  button {
+    align-self: center;
+    margin-bottom: 1rem;
   }
   p {
     display: inline-block;
     &:last-of-type {
-      // text-align: right;
       width: 100%;
     }
   }
 }
 
+.userMenu {
+  a {
+    //check hover state
+    width: 100%;
+  }
+}
 
 .menu {
   align-self: flex-end;
@@ -309,4 +339,17 @@ form {
 .hide {
   display: none;
   // visibility: hidden;
+}
+
+.disabled {
+  pointer-events: none;
+  color: #fff;
+  background: #bbb;
+  border-color: #bbb;
+  & > * {
+    color: #fff;
+    background: #bbb;
+    border-color: #bbb;
+
+  }
 }

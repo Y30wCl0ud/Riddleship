@@ -1,21 +1,22 @@
 <%- include('../partials/header.ejs') %>
 
-  <header>
-    <!-- if else needed to place correct link per role -->
-    <% if (admin) { %>
-      <a href="/users">back</a>
-    <% } else { %>
-      <a href="/meet">back</a>
-    <% } %>
+<header>
+  <!-- if else needed to place correct link per role -->
+  <% if (admin) { %>
+    <a href="/users">back</a>
+  <% } else { %>
+    <a href="/meet">back</a>
+  <% } %>
 
-    <% if (admin) { %>
-      <a href="menu"> menu </a>
-    <% } %>
-  </header>
+  <% if (admin) { %>
+    <button>menu</button>
+  <% } %>
+</header>
 
+<main>
   <section class="profilePic">
     <% if (results.picture) { %>
-      <img src="uploads/<%= results.picture %>" alt="">
+      <img src="/uploads/<%= results.picture %>" alt="">
     <% } else { %>
       <p>No photo added yet.</p>
     <% } %>
@@ -38,22 +39,27 @@
   </section>
 
 
-  <div class="menu">
     <% if (admin) { %>
-      <p>
-        menu
-      </p>
-      <ul>
+      <ul class="contentList ">
         <li><a href="/chat/<%= results.userID %>">send message</a></li>
-        <li><a href="ban">ban user</a></li>
+        <% if (results.banned === 1) { %>
+          <li>
+            <a href="/users/unban/<%= results.userID %>">unban user</a>
+          </li>
+        <% } else { %>
+          <li>
+            <a href="/users/ban/<%= results.userID %>">ban user</a>
+          </li>
+        <% } %>
+
       </ul>
     <% } else { %>
-      <!-- <a href="riddle"><button></button></a> -->
-      <a href="/chat/<%= results.userID %>"><button>Let's chat! </button></a>
+      <a href="/chat/<%= results.userID %>"
+      <% if (results.banned === 1) { %>
+        class="disabled"
+      <% } %>
+      ><button>Let's chat! </button></a>
     <% } %>
-  </div>
-
-
-
+</main>
 
 <%- include('../partials/footer.ejs') %>

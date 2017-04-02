@@ -24,10 +24,9 @@
               <p> <b><%= results[i].name %></b> </p>
               <p> <%= results[i].date %> </p>
               <p> <%= results[i].shortMsg %> </p>
-              <a href="/mychats/menu">
-                <button> menu </button>
-              </a>
             </a>
+            <button> menu </button>
+
           </li>
 
 
@@ -42,9 +41,13 @@
             <li>
               <a href="profile/<%= results[i].userID %>">delete chat atm</a>
             </li>
-            <li>
-              <a href="profile/<%= results[i].userID %>">ban user</a>
-            </li>
+            <% if (results.banned === 1) { %>
+              <li>
+                <a href="/users/unban/<%= results[i].userID %>">unban user</a>
+              </li>
+            <% } else { %>
+              <li><a href="/users/ban/<%= results[i].userID %>">ban user</a></li>
+            <% } %>
           <% } else { %>
             <li>
               <a href="profile/<%= results[i].userID %>">show profile</a>

@@ -6,11 +6,14 @@
 main {
   height: 86vh;
   overflow-y: auto;
-  padding: 0 1rem; }
+  padding: 1rem 1rem; }
   main::-webkit-scrollbar {
     display: none; }
+  main > ul, main > table {
+    flex-direction: column; }
 
 button, input[type="submit"] {
+  max-height: 2.5rem;
   padding: 0.4rem;
   border-radius: 2px;
   border: 2px solid #FF9800;
@@ -44,7 +47,6 @@ header {
   header h2 {
     color: #fff; }
   header button {
-    max-height: 2.5rem;
     width: 8rem;
     color: #FF9800; }
   header a {
@@ -87,7 +89,7 @@ nav {
     color: #FF9800; }
 
 /*=============================================>>>>>
-= Home, forms =
+= Home, forms, table =
 ===============================================>>>>>*/
 form input:not([type="file"]):not([type="submit"]) {
   height: 2rem;
@@ -115,6 +117,23 @@ form input:focus {
   .home a {
     color: #FF9800; }
 
+table {
+  width: 100%;
+  text-align: left; }
+
+tbody td {
+  line-height: 3rem; }
+  tbody td:last-of-type {
+    text-align: right; }
+tbody ul {
+  margin-bottom: 1rem; }
+
+tbody:before {
+  content: "-";
+  display: block;
+  line-height: .5rem;
+  color: transparent; }
+
 /*=============================================>>>>>
 = Components =
 ===============================================>>>>>*/
@@ -141,7 +160,7 @@ form input:focus {
   max-height: 25rem;
   justify-content: center;
   align-items: center;
-  margin: 0 -1rem;
+  margin: -1rem;
   margin-bottom: 1rem;
   padding: initial;
   overflow: hidden;
@@ -163,22 +182,26 @@ form input:focus {
 .userInfo h3 {
   border-top: 1px solid #000; }
 
-.contentList > ul {
-  flex-direction: column;
-  margin-top: 1rem; }
 .contentList li {
   justify-content: space-between;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #000;
-  padding-bottom: 1rem; }
+  border-bottom: 1px solid #000; }
   .contentList li > a {
     display: flex;
     flex-flow: column wrap;
-    justify-content: space-between; }
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 1rem; }
+.contentList button {
+  align-self: center;
+  margin-bottom: 1rem; }
 .contentList p {
   display: inline-block; }
   .contentList p:last-of-type {
     width: 100%; }
+
+.userMenu a {
+  width: 100%; }
 
 .menu {
   align-self: flex-end;
@@ -192,5 +215,15 @@ form input:focus {
 
 .hide {
   display: none; }
+
+.disabled {
+  pointer-events: none;
+  color: #fff;
+  background: #bbb;
+  border-color: #bbb; }
+  .disabled > * {
+    color: #fff;
+    background: #bbb;
+    border-color: #bbb; }
 
 /*# sourceMappingURL=main.css.map */

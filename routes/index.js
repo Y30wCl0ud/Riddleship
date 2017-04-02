@@ -131,6 +131,7 @@ router.get('/chat/:id', (req, res, next) => {
         res.render('general/chat', {results: results, id: req.params.id});
       } else {
         connection.query('SELECT * FROM user WHERE userID = ?', req.params.id, (err, results) => {
+          if (err) return next(err);
           res.render('general/chat', {results: results, id: req.params.id});
         });
       }
@@ -171,7 +172,8 @@ router.get('/contacts', (req, res, next) => {
           userB: myID
         };
         connection.query('INSERT INTO contact SET ?', [addContact], (err, results) => {
-          // redirect because results is not defined yet
+          if (err) return next(err);
+          // Redirect because results is not defined yet
           res.redirect(req.get('referer'));
         });
       }
@@ -209,6 +211,7 @@ router.get('/my_profile/edit', (req, res, next) => {
   req.getConnection((err, connection) => {
     if (err) return next(err);
     connection.query('SELECT * FROM user WHERE userID = ?', myID, (err, results) => {
+      if (err) return next(err);
       res.render('general/edit', {results: results[0]});
     });
   });
@@ -231,6 +234,7 @@ router.post('/my_profile/edit', (req, res, next) => {
   req.getConnection((err, connection) => {
     if (err) return next(err);
     connection.query('UPDATE user SET ? WHERE userID = ?', [newInfo, myID], (err, results) => {
+      if (err) return next(err);
       res.redirect('/my_profile');
     });
   });

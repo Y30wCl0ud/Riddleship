@@ -16,7 +16,8 @@
       </a>
     </h2>
   </header>
-  <section>
+
+  <main>
     <ul>
       <% for (var i = 0; i < results.length; i++) { %>
         <% if (results[i].message == null) {break;} %>
@@ -24,12 +25,13 @@
           <%= results[i].name %>
         </i>
         <li>
-          <%= results[i].message %>
+          <p><%= results[i].message %></p>
         </li>
         <br />
       <% } %>
     </ul>
-  </section>
+  </main>
+
   <form action="/chat/<%=id%>" method="post">
     <input type="text" placeholder="type hier wat in om wat te zeggen" name="message">
     <input type="submit">

@@ -14,33 +14,45 @@
     </ul>
   </nav>
 
-  <table>
-    <thead>
-      <tr>
-        <th>name</th>
-        <th>last login</th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <!-- if banned true change code
-      <% results.forEach(function(results) { %>
+  <main>
+    <table>
+      <thead>
         <tr>
-          <td> <%= results.name %> </td>
-          <td> <%= results.lastActive %> </td>
-          <td><a href="gebruikers_menu.html">options</a></td>
+          <th>name</th>
+          <th>last login</th>
+          <th></th>
         </tr>
-      <% }) %>
-    -->
+      </thead>
 
-    <tbody>
-      <tr>
-        <td>Roy</td>
-        <td>30+ dagen</td>
-        <td><a href="menu">options</a></td>
-      </tr>
-    </tbody>
-  </table>
+      <tbody>
+        <% for (var i = 0; i < results.length; i++) { %>
+          <tr>
+            <td> <%= results[i].name %> </td>
+            <td> <%= results[i].lastActive %> </td>
+            <td><button>options</button></td>
+          </tr>
+          <tr class="userMenu hide">
+            <td colspan="3">
+              <ul>
+                <li>
+                  <a href="/chat/<%= results[i].userID %>">send message</a>
+                </li>
+                <li>
+                  <a href="/profile/<%= results[i].userID %>">show profile</a>
+                </li>
+                <li>
+                  <a href="/users/unban/<%= results[i].userID %>">unban user</a>
+                </li>
+                <li>
+                  <a href="/users/delete/<%= results[i].userID %>">delete user</a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </main>
 
 
 <%- include('../partials/footer.ejs') %>

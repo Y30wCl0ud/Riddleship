@@ -21,14 +21,14 @@
           <a href="profile/<%= results[i].userID %>">
             <p> <b><%= results[i].name %></b> </p>
           </a>
-          <a href="/contacts/menu"><button> menu </button></a>
+          <button> menu </button>
         </li>
 
 
         <ul class="userMenu hide">
         <% if (admin) { %>
           <li>
-            <a href="profile/<%= results[i].userID %>">send message</a>
+            <a href="chat/<%= results[i].userID %>">send message</a>
           </li>
           <li>
             <a href="profile/<%= results[i].userID %>">show profile</a>
@@ -36,9 +36,15 @@
           <li>
             <a href="profile/<%= results[i].userID %>">delete contact  atm</a>
           </li>
-          <li>
-            <a href="profile/<%= results[i].userID %>">ban user</a>
-          </li>
+          <% if (results.banned === 1) { %>
+            <li>
+              <a href="/users/unban/<%= results[i].userID %>">unban user</a>
+            </li>
+          <% } else { %>
+            <li>
+              <a href="/users/ban/<%= results[i].userID %>">ban user</a>
+            </li>
+          <% } %>
 
         <% } else { %>
           <li>

@@ -1,3 +1,5 @@
+const path = require('path');
+
 const express = require('express'),
       bodyparser = require('body-parser'),
       multer = require('multer'),
@@ -5,7 +7,6 @@ const express = require('express'),
       validator = require('express-validator'),
       mysql = require('mysql'),
       myConnection = require('express-myconnection');
-const path = require('path');
 
 const port = 3000;
 const app = express();

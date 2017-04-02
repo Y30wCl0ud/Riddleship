@@ -1,8 +1,10 @@
 <%- include('../partials/header.ejs') %>
-<section>
+
+<main>
   <p>You will be randomly paired up with someone within your preffered age and gender.</p>
   <p><%= results%> </p>
   <a href="/meet"><button>back</button></a>
   <a href="/chat/<%= results %>"><button>continue</button></a>
-</section>
+</main>
+
 <%- include('../partials/footer.ejs') %>

@@ -14,41 +14,47 @@
     </ul>
   </nav>
 
-  <table>
-    <thead>
-      <tr>
-        <th>name</th>
-        <th>last login</th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-
-      <% results.forEach(function(results) { %>
+  <main>
+    <table>
+      <thead>
         <tr>
-          <td> <%= results.name %> </td>
-          <td> <%= results.lastActive %> </td>
-          <td><a href="gebruikers_menu.html">options</a></td>
+          <th>name</th>
+          <th>last login</th>
+          <th></th>
         </tr>
-      <% }) %>
+      </thead>
 
-      <%# <tr>
-        <td>Jaap</td>
-        <td>2 days ago</td>
-        <td><a href="/users/menu">menu</a></td>
-      </tr>
-      <tr>
-        <td>Menno</td>
-        <td>online</td>
-        <td><a href="/users/menu">menu</a></td>
-      </tr>
-      <tr>
-        <td>Roy</td>
-        <td>30+ days ago</td>
-        <td><a href="/users/menu">menu</a></td>
-      </tr>%>
-    </tbody>
-  </table>
+      <tbody>
+        <% for (var i = 0; i < results.length; i++) { %>
+          <tr>
+            <td> <%= results[i].name %> </td>
+            <td> <%= results[i].lastActive %> </td>
+            <td><button>options</button></td>
+          </tr>
+          <tr class="userMenu hide">
+            <td colspan="3">
+              <ul>
+                <li>
+                  <a href="/chat/<%= results[i].userID %>">send message</a>
+                </li>
+                <li>
+                  <a href="/profile/<%= results[i].userID %>">show profile</a>
+                </li>
+                <% if (results[i].banned === 1) { %>
+                  <li>
+                    <a href="/users/unban/<%= results[i].userID %>">unban user</a>
+                  </li>
+                <% } else { %>
+                  <li>
+                    <a href="/users/ban/<%= results[i].userID %>">ban user</a>
+                  </li>
+                <% } %>
+              </ul>
+            </td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </main>
 
 <%- include('../partials/footer.ejs') %>

@@ -18,6 +18,7 @@ router.get('/meet_random', (req, res) => {
   req.getConnection((err, connection) => {
     if (err) return next(err);
     connection.query('SELECT userID FROM user WHERE userID != ?', myID, (err, results) => {
+      if (err) return next(err);
       const i = Math.floor(Math.random() * results.length);
 
       res.render('user/meet_random', {results: results[i].userID});
