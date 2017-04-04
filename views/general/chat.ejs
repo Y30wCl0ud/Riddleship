@@ -1,7 +1,8 @@
 <%- include('../partials/header.ejs') %>
 
   <header>
-    <a href="/mychats">back</a>
+    <a class="no-js" href="#" data-back="back">back</a>
+
     <h2>
       <a href="/profile/<%=id%>">
       <!-- need a better way -->
@@ -37,4 +38,5 @@
     <input type="submit">
   </form>
 
+<script src="/scripts/back.js"></script>
 <%- include('../partials/footer.ejs') %>

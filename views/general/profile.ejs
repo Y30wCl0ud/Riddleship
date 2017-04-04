@@ -1,12 +1,7 @@
 <%- include('../partials/header.ejs') %>
 
 <header>
-  <!-- if else needed to place correct link per role -->
-  <% if (admin) { %>
-    <a href="/users">back</a>
-  <% } else { %>
-    <a href="/meet">back</a>
-  <% } %>
+  <a class="no-js" href="#" data-back="back">back</a>
 
   <% if (admin) { %>
     <button>menu</button>
@@ -62,4 +57,6 @@
     <% } %>
 </main>
 
+
+<script src="/scripts/back.js"></script>
 <%- include('../partials/footer.ejs') %>
