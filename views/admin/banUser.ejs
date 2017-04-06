@@ -1,9 +1,0 @@
-<%- include('../partials/header.ejs') %>
-
-<form action="/users/ban/<%= results.userID %>" method="post">
-  <p>Are you sure that you want to ban <b><%= results.name %></b>?</p>
-  <a href="/users">cancel</a>
-  <input type="submit" value="confirm"></input>
-</form>
-
-<%- include('../partials/footer.ejs') %>
