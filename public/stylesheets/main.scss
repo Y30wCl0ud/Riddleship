@@ -57,7 +57,7 @@ button, input[type="submit"] {
 
 // default padding
 header, form {
-  padding: .5rem 1rem;
+  padding: 0 1rem;
 }
 
 // add display flex
@@ -74,7 +74,7 @@ nav li,
 }
 
 // simple hide if js is disabled
-.no-js {
+.noJs {
   display: none;
 }
 
@@ -240,8 +240,6 @@ tbody:before {
     height: 100%;
     padding: .2rem 1rem;
 
-    // line-height: 1.8;
-
     // delete temp
     border: .2px solid black;
   }
@@ -285,7 +283,6 @@ tbody:before {
     display: inline-block;
   }
   & p:nth-last-of-type(2) {
-    // width: 100%;
     margin-bottom: 1rem;
   }
   h3 {  border-top: 1px solid #000;  }
@@ -295,19 +292,17 @@ tbody:before {
 .contentList {
   li {
     justify-content: space-between;
-    margin-bottom: 1rem;
     border-bottom: 1px solid #000;
     & > a {
       display: flex;
       flex-flow: column wrap;
       justify-content: space-between;
       width: 100%;
-      padding-bottom: 1rem;
+      padding: 1rem 0;
     }
   }
   button {
     align-self: center;
-    margin-bottom: 1rem;
   }
   p {
     display: inline-block;
@@ -339,22 +334,61 @@ tbody:before {
   }
 }
 
+.chatInput {
+  position: absolute;
+  bottom: 7vh;
+}
+
 
 
 .hide {
   display: none;
-  // visibility: hidden;
+  visibility: hidden;
 }
 
 .disabled {
   pointer-events: none;
-  color: #fff;
-  background: #bbb;
-  border-color: #bbb;
+  background: #eee;
+  border-color: #eee;
   & > * {
-    color: #fff;
-    background: #bbb;
-    border-color: #bbb;
+    background: #eee;
+    border-color: #eee;
+  }
+}
 
+// the ban popup
+#popUp {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: visible;
+
+  width: 20rem;
+  height: 12rem;
+  background: #fff;
+  border-radius: 2px;
+  border: 2px solid $primary-c;
+
+  box-shadow: 0 5px 10px #888;
+  div:first-of-type {
+    height: 70%;
+    padding: 1rem;
+  }
+  div:nth-of-type(2) {
+    display: flex;
+    justify-content: space-around;
+  }
+  button {
+    width: 50%;
+    max-height: 10rem;
+    height: 3.5rem;
+    // reset border
+    border: none;
+    border-top: 2px solid;
+    border-radius: 0;
+    &:not(:nth-of-type(1)) {
+      border-left: 2px solid;
+    }
   }
 }

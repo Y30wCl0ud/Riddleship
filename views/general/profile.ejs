@@ -1,7 +1,7 @@
 <%- include('../partials/header.ejs') %>
 
 <header>
-  <a class="no-js" href="#" data-back="back">back</a>
+  <a class="noJs" href="#" data-back="back">back</a>
 
   <% if (admin) { %>
     <button>menu</button>
@@ -39,11 +39,11 @@
         <li><a href="/chat/<%= results.userID %>">send message</a></li>
         <% if (results.banned === 1) { %>
           <li>
-            <a href="/users/unban/<%= results.userID %>">unban user</a>
+            <a href="" data-id="<%= results.userID %>">unban user</a>
           </li>
         <% } else { %>
           <li>
-            <a href="/users/ban/<%= results.userID %>">ban user</a>
+          <a href="" data-id="<%= results.userID %>">ban user</a>
           </li>
         <% } %>
 
@@ -57,6 +57,16 @@
     <% } %>
 </main>
 
+<div class="hide" id="popUp">
+  <div>
+    <p>
+    </p>
+  </div>
+  <div>
+    <button>cancel</button>
+    <button></button>
+  </div>
+</div>
 
-<script src="/scripts/back.js"></script>
+<script src='/scripts/modal.js'></script>
 <%- include('../partials/footer.ejs') %>

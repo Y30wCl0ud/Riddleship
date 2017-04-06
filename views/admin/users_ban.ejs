@@ -41,7 +41,7 @@
                   <a href="/profile/<%= results[i].userID %>">show profile</a>
                 </li>
                 <li>
-                  <a href="/users/unban/<%= results[i].userID %>">unban user</a>
+                  <a href="" data-id="<%= results[i].userID %>">unban user</a>
                 </li>
                 <li>
                   <a href="/users/delete/<%= results[i].userID %>">delete user</a>
@@ -53,6 +53,17 @@
       </tbody>
     </table>
   </main>
+
+  <div class="hide" id="popUp">
+    <div>
+      <p>
+      </p>
+    </div>
+    <div>
+      <button>cancel</button>
+      <button></button>
+    </div>
+  </div>
 
 
 <%- include('../partials/footer.ejs') %>

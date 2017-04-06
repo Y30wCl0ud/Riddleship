@@ -14,7 +14,8 @@ const app = express();
 // 'importing' the routes
 const index = require('./routes/index'),
       user = require('./routes/user'),
-      admin = require('./routes/admin');
+      admin = require('./routes/admin'),
+      api = require('./routes/api');
 var myID;
 
 // view engine setup
@@ -130,6 +131,13 @@ var results = [{
 app.use('/', index);
 app.use('/', user);
 app.use('/', admin);
+app.use('/', api);
+
+
+// Source: 404  http://stackoverflow.com/questions/6528876/how-to-redirect-404-errors-to-a-page-in-expressjs
+app.use(function(req, res) {
+    res.status(404).end('error');
+});
 
 app.listen(port, () => {
   console.log(`Listening at port ${port}`);

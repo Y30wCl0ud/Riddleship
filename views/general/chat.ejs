@@ -1,7 +1,7 @@
 <%- include('../partials/header.ejs') %>
 
   <header>
-    <a class="no-js" href="#" data-back="back">back</a>
+    <a class="noJs" href="#" data-back="back">back</a>
 
     <h2>
       <a href="/profile/<%=id%>">
@@ -33,10 +33,9 @@
     </ul>
   </main>
 
-  <form action="/chat/<%=id%>" method="post">
+  <form class="chatInput" action="/chat/<%=id%>" method="post">
     <input type="text" placeholder="type hier wat in om wat te zeggen" name="message">
     <input type="submit">
   </form>
 
-<script src="/scripts/back.js"></script>
 <%- include('../partials/footer.ejs') %>

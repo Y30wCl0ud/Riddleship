@@ -89,7 +89,7 @@ router.get('/users/delete/:id', (req, res) => {
   });
 });
 
-router.post('/users/delete/:id', (req, res) => {
+router.post('/users/delete/:id', (req, res, next) => {
   req.getConnection((err, connection) => {
     if (err) return next(err);
     connection.query('DELETE FROM user WHERE userID = ?', req.params.id, (err, results) => {

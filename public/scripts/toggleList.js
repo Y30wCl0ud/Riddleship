@@ -16,8 +16,5 @@ UserMenu.prototype.menuToggle = element => {
   element.classList.toggle('hide');
 };
 
-// const userMenuRoot = document.querySelector('.contentList');
-// const ownUserMenu = new UserMenu(userMenuRoot);
-
 const userTableRoot = document.querySelector('main')
 const ownTableMenu = new UserMenu(userTableRoot);

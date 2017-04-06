@@ -25,7 +25,7 @@
               <p> <%= results[i].date %> </p>
               <p> <%= results[i].shortMsg %> </p>
             </a>
-            <button> menu </button>
+            <button> options </button>
 
           </li>
 
@@ -39,14 +39,16 @@
               <a href="profile/<%= results[i].userID %>">show profile</a>
             </li>
             <li>
-              <a href="profile/<%= results[i].userID %>">delete chat atm</a>
+              <a class="disabled" href="profile/<%= results[i].userID %>">delete chat</a>
             </li>
-            <% if (results.banned === 1) { %>
+            <% if (results[i].banned === 1) { %>
               <li>
-                <a href="/users/unban/<%= results[i].userID %>">unban user</a>
+                <a href="" data-id="<%= results[i].userID %>">unban user</a>
               </li>
             <% } else { %>
-              <li><a href="/users/ban/<%= results[i].userID %>">ban user</a></li>
+              <li>
+                <a href="" data-id="<%= results[i].userID %>">ban user</a>
+              </li>
             <% } %>
           <% } else { %>
             <li>
@@ -66,5 +68,15 @@
       </ul>
     </main>
 
-<script src='/scripts/main.js'></script>
+    <div class="hide" id="popUp">
+      <div>
+        <p>
+        </p>
+      </div>
+      <div>
+        <button>cancel</button>
+        <button></button>
+      </div>
+    </div>
+
 <%- include('../partials/footer.ejs') %>

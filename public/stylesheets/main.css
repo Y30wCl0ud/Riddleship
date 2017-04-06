@@ -22,7 +22,7 @@ button, input[type="submit"] {
   font-size: 100%; }
 
 header, form {
-  padding: .5rem 1rem; }
+  padding: 0 1rem; }
 
 header,
 nav ul,
@@ -33,6 +33,9 @@ nav li,
 .contentList > ul,
 .contentList li {
   display: flex; }
+
+.noJs {
+  display: none; }
 
 /*=============================================>>>>>
 = Header =
@@ -184,17 +187,15 @@ tbody:before {
 
 .contentList li {
   justify-content: space-between;
-  margin-bottom: 1rem;
   border-bottom: 1px solid #000; }
   .contentList li > a {
     display: flex;
     flex-flow: column wrap;
     justify-content: space-between;
     width: 100%;
-    padding-bottom: 1rem; }
+    padding: 1rem 0; }
 .contentList button {
-  align-self: center;
-  margin-bottom: 1rem; }
+  align-self: center; }
 .contentList p {
   display: inline-block; }
   .contentList p:last-of-type {
@@ -213,17 +214,48 @@ tbody:before {
   .menu a {
     margin: 1rem 0; }
 
+.chatInput {
+  position: absolute;
+  bottom: 7vh; }
+
 .hide {
-  display: none; }
+  display: none;
+  visibility: hidden; }
 
 .disabled {
   pointer-events: none;
-  color: #fff;
-  background: #bbb;
-  border-color: #bbb; }
+  background: #eee;
+  border-color: #eee; }
   .disabled > * {
-    color: #fff;
-    background: #bbb;
-    border-color: #bbb; }
+    background: #eee;
+    border-color: #eee; }
+
+#popUp {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: visible;
+  width: 20rem;
+  height: 12rem;
+  background: #fff;
+  border-radius: 2px;
+  border: 2px solid #FF9800;
+  box-shadow: 0 5px 10px #888; }
+  #popUp div:first-of-type {
+    height: 70%;
+    padding: 1rem; }
+  #popUp div:nth-of-type(2) {
+    display: flex;
+    justify-content: space-around; }
+  #popUp button {
+    width: 50%;
+    max-height: 10rem;
+    height: 3.5rem;
+    border: none;
+    border-top: 2px solid;
+    border-radius: 0; }
+    #popUp button:not(:nth-of-type(1)) {
+      border-left: 2px solid; }
 
 /*# sourceMappingURL=main.css.map */
