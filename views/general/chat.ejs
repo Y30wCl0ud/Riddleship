@@ -18,23 +18,33 @@
     </h2>
   </header>
 
-  <main>
+  <main class="chatScreen">
     <ul>
       <% for (var i = 0; i < results.length; i++) { %>
         <% if (results[i].message == null) {break;} %>
-        <i>
-          <%= results[i].name %>
-        </i>
-        <li>
-          <p><%= results[i].message %></p>
-        </li>
-        <br />
+
+        <% if (results[i].verzender == id) { %>
+          <div class="partnerInput">
+        <% } else { %>
+          <div>
+        <% } %>
+
+          <i>
+            <%= results[i].name %>
+          </i>
+          <li>
+            <p><%= results[i].message %></p>
+          </li>
+          <br />
+        </div>
+
+
       <% } %>
     </ul>
   </main>
 
   <form class="chatInput" action="/chat/<%=id%>" method="post">
-    <input type="text" placeholder="type hier wat in om wat te zeggen" name="message">
+    <input type="text" placeholder="type here what you want to say" name="message">
     <input type="submit">
   </form>
 

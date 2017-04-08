@@ -24,6 +24,10 @@ button, input[type="submit"] {
 header, form {
   padding: 0 1rem; }
 
+main, form, .meetUsers {
+  max-width: 40rem;
+  margin: auto; }
+
 header,
 nav ul,
 nav li,
@@ -31,7 +35,9 @@ nav li,
 .profilePic,
 .menu,
 .contentList > ul,
-.contentList li {
+.contentList li,
+.partnerInput,
+.chatInput {
   display: flex; }
 
 .noJs {
@@ -58,13 +64,16 @@ header {
 /*=============================================>>>>>
 = Footer / Nav =
 ===============================================>>>>>*/
+body > nav {
+  position: fixed;
+  bottom: 0;
+  background: #FF9800; }
+
 nav {
   width: 100%; }
-  nav:last-of-type {
-    position: fixed;
-    bottom: 0; }
   nav ul {
-    justify-content: space-around; }
+    justify-content: space-around;
+    margin: auto; }
   nav li {
     flex: 1 0 calc(100%/4);
     justify-content: center;
@@ -100,8 +109,8 @@ form input:not([type="file"]):not([type="submit"]) {
   box-shadow: none;
   border: 1px solid #757575;
   border-radius: 2px; }
-  form input:not([type="file"]):not([type="submit"]):not(:last-child) {
-    margin-bottom: 1rem; }
+form input:not(:last-child) {
+  margin-bottom: 1rem; }
 form input:focus {
   outline: none; }
 
@@ -144,7 +153,7 @@ tbody:before {
   flex-flow: row wrap; }
   .meetUsers li {
     height: 6rem;
-    width: 50%; }
+    flex: 1 1 10em; }
   .meetUsers a {
     display: flex;
     flex-wrap: wrap;
@@ -166,8 +175,7 @@ tbody:before {
   margin: -1rem;
   margin-bottom: 1rem;
   padding: initial;
-  overflow: hidden;
-  border-bottom: 1px solid #000; }
+  overflow: hidden; }
   .profilePic p {
     width: 50%;
     color: #757575;
@@ -214,9 +222,25 @@ tbody:before {
   .menu a {
     margin: 1rem 0; }
 
+.chatScreen {
+  padding-bottom: 8vh; }
+  .chatScreen .partnerInput {
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right; }
+
 .chatInput {
+  align-items: center;
   position: absolute;
-  bottom: 7vh; }
+  bottom: 7vh;
+  width: 100%;
+  margin-bottom: 1rem;
+  left: 50%;
+  transform: translate(-50%, 0); }
+  .chatInput [name="message"] {
+    flex: 1 1 0;
+    margin: 0;
+    margin-right: 1rem; }
 
 .hide {
   display: none;
@@ -257,5 +281,23 @@ tbody:before {
     border-radius: 0; }
     #popUp button:not(:nth-of-type(1)) {
       border-left: 2px solid; }
+
+@media screen and (min-width: 40rem) {
+  * {
+    color: red; }
+
+  .meetUsers li {
+    flex: 1 1 15em;
+    max-width: 50%; } }
+@media screen and (min-width: 50rem) {
+  * {
+    color: blue; }
+
+  main, form, .meetUsers, nav ul {
+    max-width: 60rem;
+    margin: auto; }
+
+  .meetUsers li {
+    flex: 1 1 15em; } }
 
 /*# sourceMappingURL=main.css.map */

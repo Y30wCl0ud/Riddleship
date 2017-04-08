@@ -1,4 +1,5 @@
 <%- include('../partials/header.ejs') %>
+<header>
   <nav>
     <ul>
       <li class="location">
@@ -9,74 +10,75 @@
       </li>
     </ul>
   </nav>
+</header>
 
-    <%# loop through all active chats of the user %>
-    <main class="contentList">
-      <ul>
-        <% for (var i = 0; i < results.length; i++) { %>
+  <%# loop through all active chats of the user %>
+  <main class="contentList">
+    <ul>
+      <% for (var i = 0; i < results.length; i++) { %>
 
-          <% if (results[i].userID === myID) { %>
-            <% continue; %>
-          <% }; %>
+        <% if (results[i].userID === myID) { %>
+          <% continue; %>
+        <% }; %>
 
+        <li>
+          <a href="chat/<%= results[i].userID %>">
+            <p> <b><%= results[i].name %></b> </p>
+            <p> <%= results[i].date %> </p>
+            <p> <%= results[i].shortMsg %> </p>
+          </a>
+          <button> options </button>
+
+        </li>
+
+
+        <ul class="userMenu hide">
+        <% if (admin) { %>
           <li>
-            <a href="chat/<%= results[i].userID %>">
-              <p> <b><%= results[i].name %></b> </p>
-              <p> <%= results[i].date %> </p>
-              <p> <%= results[i].shortMsg %> </p>
-            </a>
-            <button> options </button>
-
+            <a href="profile/<%= results[i].userID %>">add to contacts</a>
           </li>
-
-
-          <ul class="userMenu hide">
-          <% if (admin) { %>
+          <li>
+            <a href="profile/<%= results[i].userID %>">show profile</a>
+          </li>
+          <li>
+            <a class="disabled" href="profile/<%= results[i].userID %>">delete chat</a>
+          </li>
+          <% if (results[i].banned === 1) { %>
             <li>
-              <a href="profile/<%= results[i].userID %>">add to contacts</a>
+              <a href="" data-id="<%= results[i].userID %>">unban user</a>
             </li>
-            <li>
-              <a href="profile/<%= results[i].userID %>">show profile</a>
-            </li>
-            <li>
-              <a class="disabled" href="profile/<%= results[i].userID %>">delete chat</a>
-            </li>
-            <% if (results[i].banned === 1) { %>
-              <li>
-                <a href="" data-id="<%= results[i].userID %>">unban user</a>
-              </li>
-            <% } else { %>
-              <li>
-                <a href="" data-id="<%= results[i].userID %>">ban user</a>
-              </li>
-            <% } %>
           <% } else { %>
             <li>
-              <a href="profile/<%= results[i].userID %>">show profile</a>
-            </li>
-            <li>
-              <a href="profile/<%= results[i].userID %>">report user</a>
-            </li>
-            <li>
-              <a href="profile/<%= results[i].userID %>">delete chat atm</a>
+              <a href="" data-id="<%= results[i].userID %>">ban user</a>
             </li>
           <% } %>
-          </ul>
-
-
+        <% } else { %>
+          <li>
+            <a href="profile/<%= results[i].userID %>">show profile</a>
+          </li>
+          <li>
+            <a href="profile/<%= results[i].userID %>">report user</a>
+          </li>
+          <li>
+            <a href="profile/<%= results[i].userID %>">delete chat atm</a>
+          </li>
         <% } %>
-      </ul>
-    </main>
+        </ul>
 
-    <div class="hide" id="popUp">
-      <div>
-        <p>
-        </p>
-      </div>
-      <div>
-        <button>cancel</button>
-        <button></button>
-      </div>
+
+      <% } %>
+    </ul>
+  </main>
+
+  <div class="hide" id="popUp">
+    <div>
+      <p>
+      </p>
     </div>
+    <div>
+      <button>cancel</button>
+      <button></button>
+    </div>
+  </div>
 
 <%- include('../partials/footer.ejs') %>
