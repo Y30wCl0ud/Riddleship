@@ -311,9 +311,6 @@ tbody:before {
 = Mediaqueries =
 ===============================================>>>>>*/
 @media screen and (min-width: 40rem) {
-  * {
-    color: red; }
-
   header div, main, form, .meetUsers, nav ul {
     max-width: 50rem; }
 
@@ -321,9 +318,6 @@ tbody:before {
     flex: 1 1 15em;
     max-width: 50%; } }
 @media screen and (min-width: 50rem) {
-  * {
-    color: blue; }
-
   .meetUsers li {
     flex: 1 1 15em; } }
 

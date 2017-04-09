@@ -20,17 +20,22 @@
         <label for="lookBoth">both</label>
         <input id=lookBoth type="radio" name="lfor" value="both">
 
-        <p>between: x - x </p>
+        <p>Preferred age between:</p>
         <label for="minAge">min(18)</label>
         <input id="minAge" type="number" min="18" max="100" name="minAge">
         <label for="maxAge">max(100)</label>
         <input id="maxAge" type="number" min="18" max="100" name="maxAge">
         <!-- <input type="range"> -->
+        <br>
 
         <label for="email">email</label>
         <input id="email" type="email" placeholder="your email" name="email">
+        <br>
+
         <label for="password">password (min: 6 characters)</label>
         <input id="password" type="password" placeholder="your password" name="password">
+        <br>
+
         <label for="confirmPassword">confirm password</label>
         <input id="confirmPassword" type="password" placeholder="your password" name="confirmPassword">
 
@@ -42,12 +47,21 @@
 
         <label for="name">name</label>
         <input id="name" type="text" placeholder="e.g. Jan Smit" name="name" >
+        <br>
+
         <label for="dob">date of birth</label>
         <input id="dob" type="date" name="dob" placeholder="dd/mm/yyyy">
+        <br>
+
         <label for="locatie">Locatie (optional)</label>
         <input id="locatie" type="text" placeholder="city/province" name="location">
+        <br>
+
         <label for="about">About yourself</label>
-        <input id="about" type="text" placeholder="Tell others a bit about yourself" name="about">
+        <br>
+        <textarea id="about" name="about" rows="8" cols="80"></textarea>
+        <br>
+
         <label for="profilePic">Picture</label>
         <input id="profilePic" type="file" name="profilePic">
 
