@@ -1,11 +1,12 @@
 <%- include('../partials/header.ejs') %>
 
 <header>
-  <a class="noJs" href="#" data-back="back">back</a>
-
-  <% if (admin) { %>
-    <button>menu</button>
-  <% } %>
+  <div>
+    <a class="noJs" href="#" data-back="back">back</a>
+    <% if (admin) { %>
+      <button>menu</button>
+    <% } %>
+  </div>
 </header>
 
 <main>
@@ -49,11 +50,11 @@
 
       </ul>
     <% } else { %>
-      <a href="/chat/<%= results.userID %>"
+      <a class="menu" href="/chat/<%= results.userID %>"
       <% if (results.banned === 1) { %>
         class="disabled"
       <% } %>
-      ><button>Let's chat! </button></a>
+      ><button class="primaryBtn">Let's chat! </button></a>
     <% } %>
 </main>
 
@@ -65,7 +66,7 @@
   <div>
     <button>cancel</button>
     <button></button>
-  </div>  
+  </div>
 </div>
 
 <script src='/scripts/modal.js'></script>

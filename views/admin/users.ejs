@@ -1,6 +1,6 @@
 <%- include('../partials/header.ejs') %>
 
-  <header>  
+  <header>
     <nav>
       <ul>
         <li class="location">
@@ -33,9 +33,9 @@
             <td> <%= results[i].lastActive %> </td>
             <td><button>options</button></td>
           </tr>
-          <tr class="userMenu hide">
+          <tr>
             <td colspan="3">
-              <ul>
+              <ul class="userMenu hide">
                 <li>
                   <a href="/chat/<%= results[i].userID %>">send message</a>
                 </li>

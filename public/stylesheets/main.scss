@@ -35,12 +35,14 @@ main {
   &::-webkit-scrollbar {
     display: none;
   }
-  & > ul, & > table {
+  & > ul,
+  & > table {
     flex-direction: column;
   }
 }
 
-button, input[type="submit"] {
+button,
+input[type="submit"] {
   max-height: 2.5rem;
 
   padding: 0.4rem;
@@ -53,17 +55,21 @@ button, input[type="submit"] {
 }
 
 // default padding
-header, form {
+header,
+form {
   padding: 0 1rem;
 }
 
-main, form, .meetUsers {
+header div,
+main,
+form,
+.meetUsers {
   max-width: 40rem;
   margin: auto;
 }
 
 // add display flex
-header,
+header div,
 nav ul,
 nav li,
 .meetUsers,
@@ -85,16 +91,17 @@ nav li,
 = Header =
 ===============================================>>>>>*/
 
+header, header div {
+    height: 7vh;
+    max-height: 8rem;
+}
+
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  height: 7vh;
-  max-height: 8rem;
-
   background-color: $primary-c;
-
+  div {
+    justify-content: space-between;
+    align-items: center;
+  }
   h2 {
     color: $headfont-c;
   }
@@ -102,12 +109,18 @@ header {
     width: 8rem;
     color: $primary-c;
     //check add hover transition
+    transition: all .3s;
+    &:hover {
+      // background: $primary_c;
+      // border-color: #fff;
+      // color: #fff;
+      // box-shadow: 0 3px 1px #fff;
+    }
   }
   a {
     color: #fff;
   }
 }
-
 
 /*=============================================>>>>>
 = Footer / Nav =
@@ -178,6 +191,7 @@ form {
   }
 }
 
+// homescreen
 .home {
   max-width: 25rem;
   margin: auto;
@@ -208,14 +222,14 @@ table {
 tbody {
   td {
     line-height: 3rem;
+    width: calc(100%/3);
     &:last-of-type {
       text-align: right;
     }
   }
   ul {
-    margin-bottom: 1rem;
+    text-align: left;
   }
-  button {}
 }
 
 // Spacing from : http://stackoverflow.com/questions/9258754/spacing-between-thead-and-tbody
@@ -230,12 +244,28 @@ tbody:before {
 = Components =
 ===============================================>>>>>*/
 
+// in myprofile - not really a menu need to change the name as it only contains .primaryBtn
+.menu {
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+// logout and lets chat
+.primaryBtn {
+  max-width: 30rem;
+  width: 100%;
+  transition: all .3s;
+  &:hover {
+    background: $primary_c;
+    color: #fff;
+  }
+}
+
 .meetUsers {
   flex-flow: row wrap;
   li {
     height: 6rem;
     flex: 1 1 10em;
-    // width: 50%;
   }
   a {
     display: flex;
@@ -245,7 +275,6 @@ tbody:before {
     height: 100%;
     padding: .2rem 1rem;
 
-    // delete temp
     border: .2px solid black;
   }
   p {
@@ -290,8 +319,8 @@ tbody:before {
   h3 {  border-top: 1px solid #000;  }
 }
 
-// check how button  a can be in a
-.contentList {
+// about lists (menus and content)
+.contentList, .userMenu {
   li {
     justify-content: space-between;
     border-bottom: 1px solid #000;
@@ -305,6 +334,11 @@ tbody:before {
   }
   button {
     align-self: center;
+    transition: all .3s;
+    &:hover {
+      background: $primary_c;
+      color: #fff;
+    }
   }
   p {
     display: inline-block;
@@ -316,23 +350,23 @@ tbody:before {
 
 .userMenu {
   a {
-    //check hover state
     width: 100%;
+    &:after {
+      content: "";
+      top: 3px;
+      border-bottom: 1px solid #000;
+      width: 0%;
+      transition: all .5s;
+    }
+    transition: all 1s;
+    &:hover:after {
+      top: 3px;
+      width: 40%;
+    }
   }
+
 }
 
-.menu {
-  align-self: flex-end;
-  justify-content: center;
-  a,
-  button {
-    max-width: 30rem;
-    width: 100%;
-  }
-  a {
-    margin: 1rem 0;
-  }
-}
 
 .chatScreen {
   padding-bottom: 8vh;
@@ -357,8 +391,6 @@ tbody:before {
     margin-right: 1rem;
   }
 }
-
-
 
 .hide {
   display: none;
@@ -412,48 +444,27 @@ tbody:before {
   }
 }
 
+/*=============================================>>>>>
+= Mediaqueries =
+===============================================>>>>>*/
+
 
 @media screen and (min-width: 40rem) {
-  header {
-    // max-width: 40rem;
-  }
+
   * {
     color: red;
   }
 
-  nav {
-    li {
-      // max-width: calc(40rem/4);
-    }
+  header div, main, form, .meetUsers, nav ul {
+    max-width: 50rem;
   }
 
   .meetUsers {
-
     li {
       flex: 1 1 15em;
       max-width: 50%;
     }
-    a {
-      // display: flex;
-      // flex-wrap: wrap;
-      // align-content: flex-start;
-      //
-      // height: 100%;
-      // padding: .2rem 1rem;
-      //
-      // // delete temp
-      // border: .2px solid black;
-    }
-    p {
-      // display: inline-block;
-      // &:last-child {
-      //   margin-top: 0.2rem;
-      //   width: 100%;
-      // }
-    }
   }
-
-
 
 }
 
@@ -462,10 +473,6 @@ tbody:before {
     color: blue;
   }
 
-  main, form, .meetUsers, nav ul {
-    max-width: 60rem;
-    margin: auto;
-  }
   .meetUsers {
     li {
       flex: 1 1 15em;

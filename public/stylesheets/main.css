@@ -12,7 +12,8 @@ main {
   main > ul, main > table {
     flex-direction: column; }
 
-button, input[type="submit"] {
+button,
+input[type="submit"] {
   max-height: 2.5rem;
   padding: 0.4rem;
   border-radius: 2px;
@@ -21,14 +22,18 @@ button, input[type="submit"] {
   color: #FF9800;
   font-size: 100%; }
 
-header, form {
+header,
+form {
   padding: 0 1rem; }
 
-main, form, .meetUsers {
+header div,
+main,
+form,
+.meetUsers {
   max-width: 40rem;
   margin: auto; }
 
-header,
+header div,
 nav ul,
 nav li,
 .meetUsers,
@@ -46,18 +51,21 @@ nav li,
 /*=============================================>>>>>
 = Header =
 ===============================================>>>>>*/
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+header, header div {
   height: 7vh;
-  max-height: 8rem;
+  max-height: 8rem; }
+
+header {
   background-color: #FF9800; }
+  header div {
+    justify-content: space-between;
+    align-items: center; }
   header h2 {
     color: #fff; }
   header button {
     width: 8rem;
-    color: #FF9800; }
+    color: #FF9800;
+    transition: all .3s; }
   header a {
     color: #fff; }
 
@@ -134,11 +142,12 @@ table {
   text-align: left; }
 
 tbody td {
-  line-height: 3rem; }
+  line-height: 3rem;
+  width: calc(100%/3); }
   tbody td:last-of-type {
     text-align: right; }
 tbody ul {
-  margin-bottom: 1rem; }
+  text-align: left; }
 
 tbody:before {
   content: "-";
@@ -149,6 +158,18 @@ tbody:before {
 /*=============================================>>>>>
 = Components =
 ===============================================>>>>>*/
+.menu {
+  justify-content: center;
+  margin-top: 1rem; }
+
+.primaryBtn {
+  max-width: 30rem;
+  width: 100%;
+  transition: all .3s; }
+  .primaryBtn:hover {
+    background: #FF9800;
+    color: #fff; }
+
 .meetUsers {
   flex-flow: row wrap; }
   .meetUsers li {
@@ -193,34 +214,38 @@ tbody:before {
 .userInfo h3 {
   border-top: 1px solid #000; }
 
-.contentList li {
+.contentList li, .userMenu li {
   justify-content: space-between;
   border-bottom: 1px solid #000; }
-  .contentList li > a {
+  .contentList li > a, .userMenu li > a {
     display: flex;
     flex-flow: column wrap;
     justify-content: space-between;
     width: 100%;
     padding: 1rem 0; }
-.contentList button {
-  align-self: center; }
-.contentList p {
+.contentList button, .userMenu button {
+  align-self: center;
+  transition: all .3s; }
+  .contentList button:hover, .userMenu button:hover {
+    background: #FF9800;
+    color: #fff; }
+.contentList p, .userMenu p {
   display: inline-block; }
-  .contentList p:last-of-type {
+  .contentList p:last-of-type, .userMenu p:last-of-type {
     width: 100%; }
 
 .userMenu a {
-  width: 100%; }
-
-.menu {
-  align-self: flex-end;
-  justify-content: center; }
-  .menu a,
-  .menu button {
-    max-width: 30rem;
-    width: 100%; }
-  .menu a {
-    margin: 1rem 0; }
+  width: 100%;
+  transition: all 1s; }
+  .userMenu a:after {
+    content: "";
+    top: 3px;
+    border-bottom: 1px solid #000;
+    width: 0%;
+    transition: all .5s; }
+  .userMenu a:hover:after {
+    top: 3px;
+    width: 40%; }
 
 .chatScreen {
   padding-bottom: 8vh; }
@@ -282,9 +307,15 @@ tbody:before {
     #popUp button:not(:nth-of-type(1)) {
       border-left: 2px solid; }
 
+/*=============================================>>>>>
+= Mediaqueries =
+===============================================>>>>>*/
 @media screen and (min-width: 40rem) {
   * {
     color: red; }
+
+  header div, main, form, .meetUsers, nav ul {
+    max-width: 50rem; }
 
   .meetUsers li {
     flex: 1 1 15em;
@@ -292,10 +323,6 @@ tbody:before {
 @media screen and (min-width: 50rem) {
   * {
     color: blue; }
-
-  main, form, .meetUsers, nav ul {
-    max-width: 60rem;
-    margin: auto; }
 
   .meetUsers li {
     flex: 1 1 15em; } }

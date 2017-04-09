@@ -1,8 +1,10 @@
 <%- include('../partials/header.ejs') %>
 
   <header>
-    <a href="/my_profile/edit">edit</a>
-    <%# <a href=""><button>change photo</button></a>%>
+    <div>
+      <a href="/my_profile/edit">edit</a>
+      <%# <a href=""><button>change photo</button></a>%>
+    </div>
   </header>
 
 <main class="profileView">
@@ -27,8 +29,10 @@
     <h3>About you:</h3>
     <p> <%= results.about %> </p>
   </section>
-  <div class="menu">
-    <a href="/my_profile/logout"><button>logout</button></a>
+  <div>
+    <a class="menu" href="/my_profile/logout">
+      <button class="primaryBtn">logout</button>
+    </a>
   </div>
 </main>
 

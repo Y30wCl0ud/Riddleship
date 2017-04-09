@@ -1,21 +1,23 @@
 <%- include('../partials/header.ejs') %>
 
   <header>
-    <a class="noJs" href="#" data-back="back">back</a>
+    <div>
+     <a class="noJs" href="#" data-back="back">back</a>
 
-    <h2>
-      <a href="/profile/<%=id%>">
-      <!-- need a better way -->
-      <% for (var i = 0; i < results.length; i++) { %>
-        <% if (results[i].name != myName) { %>
-            <%= results[i].name %>
-          <% break; %>
-        <% } else { %>
-          -
-          <% } %>
-      <% } %>
-      </a>
-    </h2>
+      <h2>
+        <a href="/profile/<%=id%>">
+        <!-- need a better way -->
+        <% for (var i = 0; i < results.length; i++) { %>
+          <% if (results[i].name != myName) { %>
+              <%= results[i].name %>
+            <% break; %>
+          <% } else { %>
+            -
+            <% } %>
+        <% } %>
+        </a>
+      </h2>
+    </div>
   </header>
 
   <main class="chatScreen">
