@@ -48,6 +48,12 @@ nav li,
 .noJs {
   display: none; }
 
+.error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
 /*=============================================>>>>>
 = Header =
 ===============================================>>>>>*/

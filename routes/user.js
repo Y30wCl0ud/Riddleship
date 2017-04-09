@@ -39,13 +39,13 @@ router.get('/meet_random', (req, res, next) => {
 });
 
 
-router.get('/riddle', (req, res) => {
-  res.render('user/riddle');
-});
-
-router.get('/riddle_game', (req, res) => {
-  res.render('user/riddle_game');
-});
+// router.get('/riddle', (req, res) => {
+//   res.render('user/riddle');
+// });
+//
+// router.get('/riddle_game', (req, res) => {
+//   res.render('user/riddle_game');
+// });
 
 
 

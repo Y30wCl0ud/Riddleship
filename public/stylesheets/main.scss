@@ -87,6 +87,14 @@ nav li,
   display: none;
 }
 
+// 404
+.error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 /*=============================================>>>>>
 = Header =
 ===============================================>>>>>*/

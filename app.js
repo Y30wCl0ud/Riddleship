@@ -136,7 +136,8 @@ app.use('/', api);
 
 // Source: 404  http://stackoverflow.com/questions/6528876/how-to-redirect-404-errors-to-a-page-in-expressjs
 app.use(function(req, res) {
-    res.status(404).end('error');
+    res.status(404);
+    res.render('404.ejs', {title: '404: File Not Found', message: "This page is still in construction or doesn't exist(yet)"});
 });
 
 app.listen(port, () => {
