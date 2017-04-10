@@ -29,16 +29,14 @@ router.get('/meet_random', (req, res, next) => {
 
       connection.query('SELECT userID, name, TIMESTAMPDIFF(YEAR, dob, CURDATE()) AS age, location FROM user WHERE admin = 0 AND userID != ? AND IF (? = "both", gender = "male" OR gender = "female", gender = ?) HAVING age BETWEEN ? AND ?', [myID, userSelf.lookingFor, userSelf.lookingFor, userSelf.minAge, userSelf.maxAge], (err, results) => {
         if(err) return next(err);
-        const i = Math.floor(Math.random() * results.length); // randomly select a match
+        const i = Math.floor(Math.random() * results.length); // randomly select a match according to user preferrences
         res.render('user/meet_random', {results: results[i].userID});
       });
-  });
-
-
+    });
   });
 });
 
-
+// not made yet
 // router.get('/riddle', (req, res) => {
 //   res.render('user/riddle');
 // });

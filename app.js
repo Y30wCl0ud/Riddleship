@@ -41,9 +41,7 @@ app.use(bodyparser.urlencoded({extended: false}));
 
 app.use(upload.single('profilePic'));
 
-// app.use(validator());
 // this line must be immediately after any of the bodyParser middlewares!
-// app.use(validator());
 app.use(validator({
   errorFormatter: function(param, msg, value) {
       var namespace = param.split('.')
@@ -75,57 +73,8 @@ app.use((req, res, next) => {
   res.locals.loggedIn = req.session.loggedIn;
   res.locals.admin = req.session.admin;
   res.locals.myName = req.session.myName;
-
-  // delete when db integration is fully complete
-  // res.locals.results = results;
   next();
 });
-
-
-// for the simple prototype now - delete when db integration is fully complete
-var results = [{
-  id: 1,
-  name: 'John',
-  age: 23,
-  gender: 'male',
-  location: 'Charles Town',
-  lookingFor: 'female',
-  about: 'hi this is about me and stuff',
-  email: 'john@msn.nl',
-
-  reported: false,
-  reporter: null,
-  reason: 'Ze is all meer dan een maand inactief in de riddle',
-  date: 'null'
-  }, {
-  id: 2,
-  name: 'Jen',
-  age: 27,
-  gender: 'female',
-  location: 'Que Town',
-  lookingFor: 'male',
-  about: 'hi this is about me and stuff',
-  email: 'jen@live.com',
-
-  reported: true,
-  reporter: 'John',
-  reason: 'Ze is all meer dan een maand inactief in de riddle',
-  date: '12-02-17'
-  }, {
-  id: 3,
-  name: 'Jen',
-  age: 27,
-  gender: 'female',
-  location: 'Que Town',
-  lookingFor: 'male',
-  about: 'hi this is about me and stuff',
-  email: 'jen@live.com',
-
-  reported: false,
-  reporter: 'John',
-  reason: 'Ze is all meer dan een maand inactief in de riddle',
-  date: '12-02-17'
-}];
 
 // Use the defined routes
 app.use('/', index);
@@ -133,8 +82,7 @@ app.use('/', user);
 app.use('/', admin);
 app.use('/', api);
 
-
-// Source: 404  http://stackoverflow.com/questions/6528876/how-to-redirect-404-errors-to-a-page-in-expressjs
+// Source: 404  http://www.hacksparrow.com/express-js-custom-error-pages-404-and-500.html
 app.use(function(req, res) {
     res.status(404);
     res.render('404.ejs', {title: '404: File Not Found', message: "This page is still in construction or doesn't exist(yet)"});

@@ -5,14 +5,10 @@ router.get('/dashboard', (req, res) => {
   res.render('admin/dashboard');
 });
 
-router.get('/reported', (req, res) => {
-  res.render('admin/reported');
-});
-
-// To be removed
-router.get('/reported_o', (req, res) => {
-  res.render('admin/reported_o');
-});
+// not made yet
+// router.get('/reported', (req, res) => {
+//   res.render('admin/reported');
+// });
 
 router.get('/users', (req, res) => {
   req.getConnection((err, connection) => {
@@ -39,32 +35,12 @@ router.get('/users/banned', (req, res) => {
   });
 });
 
-router.get('/users/ban/:id', (req, res) => {
-  req.getConnection((err, connection) => {
-    if (err) return next(err);
-    connection.query('SELECT name, userID FROM user WHERE userID = ?', req.params.id, (err, results) => {
-      if (err) return nect(err);
-      res.render('admin/banUser', {results: results[0]});
-    });
-  });
-});
-
 router.post('/users/ban/:id', (req, res) => {
   req.getConnection((err, connection) => {
     if (err) return next(err);
     connection.query('UPDATE user SET banned = 1 WHERE userID = ?', req.params.id, (err, results) => {
       if (err) return next(err);
-      res.redirect('/users/banned');
-    });
-  });
-});
-
-router.get('/users/unban/:id', (req, res) => {
-  req.getConnection((err, connection) => {
-    if (err) return next(err);
-    connection.query('SELECT name, userID FROM user WHERE userID = ?', req.params.id, (err, results) => {
-      if (err) return nect(err);
-      res.render('admin/unbanUser', {results: results[0]});
+      res.end();
     });
   });
 });
@@ -74,7 +50,7 @@ router.post('/users/unban/:id', (req, res) => {
     if (err) return next(err);
     connection.query('UPDATE user SET banned = 0 WHERE userID = ?', req.params.id, (err, results) => {
       if (err) return next(err);
-      res.redirect('/users/banned');
+      res.end();
     });
   });
 });

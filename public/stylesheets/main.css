@@ -52,7 +52,8 @@ nav li,
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  padding-bottom: 10rem; }
 
 /*=============================================>>>>>
 = Header =
@@ -275,7 +276,7 @@ tbody:before {
 
 .hide {
   display: none;
-  visibility: hidden; }
+  transition: all .5s; }
 
 .disabled {
   pointer-events: none;
@@ -290,7 +291,6 @@ tbody:before {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  visibility: visible;
   width: 20rem;
   height: 12rem;
   background: #fff;

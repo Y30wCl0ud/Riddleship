@@ -93,6 +93,7 @@ nav li,
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 10rem;
 }
 
 /*=============================================>>>>>
@@ -402,7 +403,8 @@ tbody:before {
 
 .hide {
   display: none;
-  visibility: hidden;
+  // visibility: hidden;
+  transition: all .5s;
 }
 
 .disabled {
@@ -421,7 +423,7 @@ tbody:before {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  visibility: visible;
+  // visibility: visible;
 
   width: 20rem;
   height: 12rem;
