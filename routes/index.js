@@ -43,9 +43,7 @@ router.post('/', (req, res, next) => {
             req.session.admin = results[0].admin; // Check whether user is admin
             req.session.ID = results[0].userID;
             req.session.myName = results[0].name;
-            myID = req.session.ID; // Set the global var to access own ID
-
-            console.log(myID);
+            // console.log(req.session.ID);
             if (req.session.admin) {
               res.redirect('/dashboard');
             } else {
@@ -109,9 +107,9 @@ router.post('/register', (req, res, next) => {
 router.get('/mychats', (req, res, next) => {
   req.getConnection((err, connection) => {
     if (err) return next(err);
-    connection.query('SELECT DISTINCT user.userID, user.name, chat.message, CONCAT(LEFT(chat.message, 40), "...") AS shortMsg,chat.date FROM user JOIN chat ON (user.userID = chat.ontvanger OR user.userID = chat.verzender) WHERE (? = chat.verzender OR ? = chat.ontvanger) GROUP BY user.name ORDER BY chat.date DESC', [myID, myID], (err, results) => {
+    connection.query('SELECT DISTINCT user.userID, user.name, chat.message, CONCAT(LEFT(chat.message, 40), "...") AS shortMsg,chat.date FROM user JOIN chat ON (user.userID = chat.ontvanger OR user.userID = chat.verzender) WHERE (? = chat.verzender OR ? = chat.ontvanger) GROUP BY user.name ORDER BY chat.date DESC', [req.session.ID, req.session.ID], (err, results) => {
       if (err) return next(err);
-      res.render('general/mychats', {results: results});
+      res.render('general/mychats', {results: results, myID:req.session.ID});
     });
   });
 });
@@ -119,7 +117,7 @@ router.get('/mychats', (req, res, next) => {
 router.get('/chat/:id', (req, res, next) => {
   req.getConnection((err, connection) => {
     if (err) return next(err);
-    connection.query('SELECT DISTINCT user.userID, user.name, chat.verzender, chat.ontvanger, chat.message, chat.date, DATE(chat.date) AS fullDate FROM user JOIN chat ON user.userID = chat.verzender WHERE ? = chat.verzender AND ? = chat.ontvanger OR ? = chat.verzender AND ? = chat.ontvanger ORDER BY chat.date ASC', [myID, req.params.id, req.params.id, myID], (err, results) => {
+    connection.query('SELECT DISTINCT user.userID, user.name, chat.verzender, chat.ontvanger, chat.message, chat.date, DATE(chat.date) AS fullDate FROM user JOIN chat ON user.userID = chat.verzender WHERE ? = chat.verzender AND ? = chat.ontvanger OR ? = chat.verzender AND ? = chat.ontvanger ORDER BY chat.date ASC', [req.session.ID, req.params.id, req.params.id, req.session.ID], (err, results) => {
       if (err) return next(err);
 
       // if there are messages display them else show the name of the partner only
@@ -137,7 +135,7 @@ router.get('/chat/:id', (req, res, next) => {
 
 router.post('/chat/:id', (req, res, next) => {
   const postMessage = {
-    verzender: myID,
+    verzender: req.session.ID,
     ontvanger: req.params.id,
     message: req.body.message
   };
@@ -156,7 +154,7 @@ router.post('/chat/:id', (req, res, next) => {
 router.get('/contacts', (req, res, next) => {
   req.getConnection((err, connection) => {
     if (err) return next(err);
-    connection.query('SELECT DISTINCT user.userID ,user.name, contact.userA, contact.userB FROM user JOIN contact ON user.userID = contact.userA OR user.userID = contact.userB WHERE ? = contact.userA OR ? = contact.userB', [myID, myID], (err, results) => {
+    connection.query('SELECT DISTINCT user.userID ,user.name, contact.userA, contact.userB FROM user JOIN contact ON user.userID = contact.userA OR user.userID = contact.userB WHERE ? = contact.userA OR ? = contact.userB', [req.session.ID, req.session.ID], (err, results) => {
       if (err) return next(err);
 
       // if there are results show them else add 2/admin to contacts
@@ -165,7 +163,7 @@ router.get('/contacts', (req, res, next) => {
       } else {
         const addContact = {
           userA: 2,
-          userB: myID
+          userB: req.session.ID
         };
         connection.query('INSERT INTO contact SET ?', [addContact], (err, results) => {
           if (err) return next(err);
@@ -188,10 +186,10 @@ router.get('/profile/:id', (req, res, next) => {
 });
 
 router.get('/my_profile', (req, res, next) => {
-  // picture = user.picture where id = myID
+  // picture = user.picture where id = req.session.ID
   req.getConnection((err, connection) => {
     if (err) return next(err);
-    connection.query('SELECT *, TIMESTAMPDIFF(YEAR, dob, CURDATE()) AS age FROM user WHERE userID = ?', myID, (err, results) => {
+    connection.query('SELECT *, TIMESTAMPDIFF(YEAR, dob, CURDATE()) AS age FROM user WHERE userID = ?', req.session.ID, (err, results) => {
       if (err) return next(err);
       res.render('general/my_profile', {results: results[0], picture: 'admin1.jpg'});
     });
@@ -202,7 +200,7 @@ router.get('/my_profile', (req, res, next) => {
 router.get('/my_profile/edit', (req, res, next) => {
   req.getConnection((err, connection) => {
     if (err) return next(err);
-    connection.query('SELECT * FROM user WHERE userID = ?', myID, (err, results) => {
+    connection.query('SELECT * FROM user WHERE userID = ?', req.session.ID, (err, results) => {
       if (err) return next(err);
       res.render('general/edit', {results: results[0]});
     });
@@ -225,7 +223,7 @@ router.post('/my_profile/edit', (req, res, next) => {
   }
   req.getConnection((err, connection) => {
     if (err) return next(err);
-    connection.query('UPDATE user SET ? WHERE userID = ?', [newInfo, myID], (err, results) => {
+    connection.query('UPDATE user SET ? WHERE userID = ?', [newInfo, req.session.ID], (err, results) => {
       if (err) return next(err);
       res.redirect('/my_profile');
     });
